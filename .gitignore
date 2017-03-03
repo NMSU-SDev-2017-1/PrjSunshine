@@ -1,0 +1,9 @@
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Thumbnails
+._*
+
+# Java 
+*.class

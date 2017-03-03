@@ -1,0 +1,4 @@
+
+@reboot python /home/pi/RCU/osrun1.py
+@reboot python /home/pi/RCU/osrun2.py >> /home/pi/RCU/rcu.log
+@reboot python /home/pi/RCU/osrun3.py
