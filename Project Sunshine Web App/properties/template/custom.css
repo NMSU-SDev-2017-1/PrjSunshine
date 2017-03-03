@@ -1,0 +1,22 @@
+.panel-gettingStarted>.panel-heading {
+    border-color: #6d6b67;
+    background-color: #6d6b67;
+    color: white;
+}
+.panel-gettingStarted{
+    border-color: #6d6b67;
+}
+
+.WarningMessage
+{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    padding:30px;
+    font-size:1.2em;
+    font-weight: bold;
+    border-radius: 5px;
+    z-index: 8000;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
