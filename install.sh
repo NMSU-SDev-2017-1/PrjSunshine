@@ -153,7 +153,7 @@ else
     apt-get update
     apt-get install iptables-persistent
     apt-get install hostapd isc-dhcp-server
-    apt-get install apache2 php libapache2-mod-php
+    apt-get install php5
 
 #Backs up the files we are using if it wasnt otherwise specified
     if [ $NOBACKUP = "0" ]; then
