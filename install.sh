@@ -104,13 +104,13 @@ function undoInstall() {
 
     apt-get remove iptables-persistent
     apt-get remove hostapd isc-dhcp-server
-    apt-get remove apache2 php5 libapache2-mod-php
+    apt-get remove apache2 php5
     quit
 }
 
 function copyfiles() {
-    rsync -r $fileloc/ /var/www
-    cd /var/www
+    rsync -r $fileloc/ /var/www/html
+    cd /var/www/html
     rm -r .git
     rm .gitignore
     quit
@@ -166,30 +166,34 @@ else
         cp /etc/default/hostapd /opt/sunshine/backups/hostapd.backup
         cp /etc/init.d/hostapd /opt/sunshine/backups/hostapd.initd.backup
         cp /etc/sysctl.conf /opt/sunshine/backups/sysctl.conf.backup
-        sed -i '/backupdone=0/c\backupdone=1' /var/www/Install/config.sun
+        sed -i '/backupdone=0/c\backupdone=1' /var/www/html/Install/config.sun
     fi
 
 #Editing the interfaces file
     echo "#INTERFACE ADD">>/etc/network/interfaces
-    sed -e '/#INTERFACE ADD/{r /var/www/Install/interfaceadd.sun' -e 'd}' -i.bak /etc/network/interfaces
+    sed -e '/#INTERFACE ADD/{r /var/www/html/Install/interfaceadd.sun' -e 'd}' -i.bak /etc/network/interfaces
 
 #Editing of /etc/dhcp/dhcpd.conf file
     sed -i '/option domain-name "example.org";/c\#option domain-name "example.org";' /etc/dhcp/dhcpd.conf
     sed -i '/option domain-name-servers ns1.example.org, ns2.example.org;/c\#option domain-name-servers ns1.example.org, ns2.example.org;' /etc/dhcp/dhcpd.conf
     sed -i '/#authoritative;/c\authoritative' /etc/dhcp/dhcpd.conf
     echo "#DHCP ADD">>/etc/dhcp/dhcpd.conf
-    sed -e '/#DHCP ADD/{r /var/www/Install/dhcpadd.sun' -e 'd}' -i.bak /etc/dhcp/dhcpd.conf
+    sed -e '/#DHCP ADD/{r /var/www/html/Install/dhcpadd.sun' -e 'd}' -i.bak /etc/dhcp/dhcpd.conf
 
 #Editing /etc/default/isc-dhcp-server
+    sed -i '#DHCPD_CONF=/etc/dhcp/dhcpd.conf/c\DHCPD_CONF=/etc/dhcp/dhcpd.conf' /etc/default/isc-dhcp-server
     sed -i '/INTERFACES=""/c\INTERFACES="wlan0"' /etc/default/isc-dhcp-server
     service isc-dhcp-server restart
 
 #Editing /etc/hostapd/hostapd.conf
     echo "#HOSTAPD ADD">>/etc/hostapd/hostapd.conf
-    sed -e '/#HOSTAPD ADD/{r /var/www/Install/hostapdadd.sun' -e 'd}' -i.bak /etc/hostapd/hostapd.conf
+    sed -e '/#HOSTAPD ADD/{r /var/www/html/Install/hostapdadd.sun' -e 'd}' -i.bak /etc/hostapd/hostapd.conf
 
 #Editing /etc/default/hostapd
-    sed -i '/#DAEMON_CONF/c\DAEMON_CONF="/etc/hostapd/hostapd.conf"' /etc/default/hostapd
+    sed -i '/#DAEMON_CONF=""/c\DAEMON_CONF="/etc/hostapd/hostapd.conf"' /etc/default/hostapd
+
+#Editing /etc/init.d/hostapd
+    sed -i '/DAEMON_CONF=/c\DAEMON_CONF=/etc/hostapd/hostapd.conf'
 
 #Editing /etc/sysctl.conf and forwarding wireless connection to ethernet
     sed -i '/#net.ipv4.ip_forward=1/c\net.ipv4.ip_forward=1' /etc/sysctl.conf
@@ -206,6 +210,6 @@ else
     update-rc.d hostapd enable
     update-rc.d isc-dhcp-server enable
 
-    sed -i '/installed=0/c\installed=1' /var/www/Install/config.sun
+    sed -i '/installed=0/c\installed=1' /var/www/html/Install/config.sun
     copyfiles
 fi
