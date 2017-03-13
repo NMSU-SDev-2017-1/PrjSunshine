@@ -169,6 +169,10 @@ else
         sed -i '/backupdone=0/c\backupdone=1' /var/www/Install/config.sun
     fi
 
+#Editing the interfaces file
+    echo "#INTERFACE ADD">>/etc/network/interfaces
+    sed -e '/#INTERFACE ADD/{r /var/www/Install/interfaceadd.sun' -e 'd}' -i.bak /etc/network/interfaces
+
 #Editing of /etc/dhcp/dhcpd.conf file
     sed -i '/option domain-name "example.org";/c\#option domain-name "example.org";' /etc/dhcp/dhcpd.conf
     sed -i '/option domain-name-servers ns1.example.org, ns2.example.org;/c\#option domain-name-servers ns1.example.org, ns2.example.org;' /etc/dhcp/dhcpd.conf
