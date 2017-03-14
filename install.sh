@@ -99,8 +99,8 @@ function undoInstall() {
     cp /opt/sunshine/backups/hostapd.initd.backup /etc/init.d/hostapd
     cp /opt/sunshine/backups/sysctl.conf.backup /etc/sysctl.conf
 
-    cd /var/www
-    rm *
+    cd /var/www/html
+    rm -r *
 
     apt-get remove iptables-persistent
     apt-get remove hostapd isc-dhcp-server
@@ -176,7 +176,7 @@ else
 #Editing of /etc/dhcp/dhcpd.conf file
     sed -i '/option domain-name "example.org";/c\#option domain-name "example.org";' /etc/dhcp/dhcpd.conf
     sed -i '/option domain-name-servers ns1.example.org, ns2.example.org;/c\#option domain-name-servers ns1.example.org, ns2.example.org;' /etc/dhcp/dhcpd.conf
-    sed -i '/#authoritative;/c\authoritative' /etc/dhcp/dhcpd.conf
+    sed -i '/#authoritative;/c\authoritative;' /etc/dhcp/dhcpd.conf
     echo "#DHCP ADD">>/etc/dhcp/dhcpd.conf
     sed -e '/#DHCP ADD/{r /var/www/html/Install/dhcpadd.sun' -e 'd}' -i.bak /etc/dhcp/dhcpd.conf
 
@@ -204,6 +204,8 @@ else
     sh -c "iptables-save > /etc/iptables/rules.v4"
 
 #Start adn setup the daemon so it runs at boot
+    ifdown wlan0
+    ifconfig wlan0 192.168.42.1
     service hostapd start
     service isc-dhcp-server start
 
