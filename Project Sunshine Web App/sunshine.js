@@ -20,21 +20,16 @@ $(document).ready(function(){
   			return;
   		}
 
-  		if(timeOfDay == 'pm'){
-  			hour = hour + 12;
-  		}
-  		//At this point, user has selected all require values
-		var time = countDownTime(hour, minute, timeOfDay);
-  		writeToFile(time);
+  		writeToFile(hour, minute, timeOfDay);
 	});
 
 });//End doc on ready
 
 //Purpose: Pass user values into text file to be read by Java program
-function writeToFile(time){
-		var promise = writeToFileAJAX(time);	
+function writeToFile(hour, minute, timeOfDay){
+		var promise = writeToFileAJAX(hour, minute, timeOfDay);	
 		promise.done(function(json){
-
+			successAlert('Submit successful!');
  		});
 
     	promise.fail(function(json) {
@@ -43,54 +38,26 @@ function writeToFile(time){
 }
 
 //Purpose: Write count down timer to file using AJAX
-function writeToFileAJAX(time){
+function writeToFileAJAX(hour, minute, timeOfDay){
 	return $.ajax({
         type: "POST",
         url: "AJAX_calls/writeToFile.php",
         dataType: "json",
         data: {
-            time : time
+            hour: hour,
+            minute : minute,
+            timeOfDay: timeOfDay
         }
 	})
-}
-
-//Purpose: Depending on time passed in by user, return the difference between current time and photo time
-function countDownTime(userHour, userMinute){
-	var date = new Date;
-	var currentSecond = date.getSeconds();
-	var currentMinute = date.getMinutes();
-	var currentHour = date.getHours();
-	var hour = 0;
-	var minute = 0;
-	var second = 0;
-	var timeSum = 0;
-	console.log(currentHour);
-	console.log(currentMinute);
-	console.log(currentSecond);
-	//Hour conversion
-	if(currentHour > userHour){
-		hour = currentHour - userHour;
-	}else{
-		hour = userHour - currentHour;
-	}
-	//Convert hour into seconds
-	hour = hour*3600;
-
-	//Minute conversion
-	if(currentMinute > userMinute){
-		minute = currentMinute - userMinute;
-	}else{
-		minute = userMinute - currentMinute;
-	}
-	minute = minute * 60;
-
-	timeSum = hour + minute + currentSecond;
-
-	return timeSum; 
 }
 
 //Purpose: Depending on action taken by user, alert them with message displayed in red
 function failAlert(message){
 	$(".WarningMessage").html(message).toggle();
     $( ".WarningMessage" ).delay( 3000 ).fadeOut(200);   
+}
+
+function successAlert(message){
+	$(".PopupPanel").html(message).toggle();
+    $( ".PopupPanel" ).delay( 3000 ).fadeOut(200);
 }
