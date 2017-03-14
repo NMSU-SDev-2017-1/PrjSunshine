@@ -1,5 +1,7 @@
 ## Problem Statement
 
+To acess the server type 192.168.42.1 into the address bar
+
  Introducing Project Sunshine, a Raspberry Pi with an integrated camera that automatically takes a photo of the rising sun and transmits that photo to the user's interface. In order to accomplish this overarching task, Project Sunshine can be divided into requirements specific for the user interface and Raspberry Pi. Certain requirements will necessitate that the user interface communicates effectively with the Raspberry Pi.
 
 In laying out the initial problem statement, our team will detail a description of the device functionality from the user's perspective. The team has decided to embrace an incremental project development approach. A list of primary, secondary, and tertiary requirements has been included in the problem statement.
