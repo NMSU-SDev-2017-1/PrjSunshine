@@ -113,7 +113,7 @@ function copyfiles() {
     cd /var/www/html
     rm -r .git
     rm .gitignore
-    quit
+    return
 }
 
 fileloc=$(pwd)
@@ -124,13 +124,13 @@ if [ $HELP = "1" ]; then
 fi
 
 #Ensure backup files are not overwritten
-if grep -Fxq "backupdone=1" /var/www/Install/config.sun
+if grep -Fxq "backupdone=1" /var/www/html/Install/config.sun
 then
     NOBACKUP=1
 fi
 
 #do not do all reinstall acitons if it already completed successfully
-if grep -Fxq "installed=1" /var/www/Install/config.sun
+if grep -Fxq "installed=1" /var/www/html/Install/config.sun
 then
     FILESONLY=1
 fi
@@ -143,8 +143,10 @@ if [ $UNINSTALL = "1" ]; then
 else
     if [ $FILESONLY = "1" ]; then
         copyfiles
+        quit
     fi
 
+    copyfiles
     #we will copy the files we modify to a directory that is far out of the
     #way. that way we can revert changes later. update first to ensure
     #we have the headers for the new packages
@@ -213,5 +215,4 @@ else
     update-rc.d isc-dhcp-server enable
 
     sed -i '/installed=0/c\installed=1' /var/www/html/Install/config.sun
-    copyfiles
 fi
