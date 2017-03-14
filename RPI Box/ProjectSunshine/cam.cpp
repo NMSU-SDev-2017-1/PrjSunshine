@@ -26,7 +26,7 @@ void Cam::readIn(int n)
 {
 	std::ifstream file;
 
-	file.open("Input/commands.sun");
+	file.open("Input/commands.sun");   // UI will save file to /var/www/html/"RPI Box"/ProjectSunshine/Input/commands.sun
 
 	//Read word by word
 	while (file >> word)
