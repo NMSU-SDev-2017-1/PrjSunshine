@@ -146,7 +146,7 @@ else
         quit
     fi
 
-    copyfiles
+
     #we will copy the files we modify to a directory that is far out of the
     #way. that way we can revert changes later. update first to ensure
     #we have the headers for the new packages
@@ -157,6 +157,7 @@ else
     apt-get install hostapd isc-dhcp-server
     apt-get install php5
 
+    copyfiles
 #Backs up the files we are using if it wasnt otherwise specified
     if [ $NOBACKUP = "0" ]; then
         mkdir /opt/sunshine
