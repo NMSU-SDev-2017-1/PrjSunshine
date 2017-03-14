@@ -109,6 +109,7 @@ function undoInstall() {
 }
 
 function copyfiles() {
+    echo "copying files to apache directory"
     rsync -r $fileloc/ /var/www/html
     cd /var/www/html
     rm -r .git
@@ -150,7 +151,7 @@ else
     #we will copy the files we modify to a directory that is far out of the
     #way. that way we can revert changes later. update first to ensure
     #we have the headers for the new packages
-
+    echo "installing dependencies"
     cd /
     apt-get update
     apt-get install iptables-persistent
@@ -160,6 +161,7 @@ else
     copyfiles
 #Backs up the files we are using if it wasnt otherwise specified
     if [ $NOBACKUP = "0" ]; then
+        echo "backing up files"
         mkdir /opt/sunshine
         mkdir /opt/sunshine/backups
         cp /etc/dhcp/dhcpd.conf /opt/sunshine/backups/dhcpd.conf.backup
@@ -173,10 +175,12 @@ else
     fi
 
 #Editing the interfaces file
+    echo "Editing interfaces file"
     echo "#INTERFACE ADD">>/etc/network/interfaces
     sed -e '/#INTERFACE ADD/{r /var/www/html/Install/interfaceadd.sun' -e 'd}' -i.bak /etc/network/interfaces
 
 #Editing of /etc/dhcp/dhcpd.conf file
+    echo "Editing /etc/dhcp/dhcpd.conf"
     sed -i '/option domain-name "example.org";/c\#option domain-name "example.org";' /etc/dhcp/dhcpd.conf
     sed -i '/option domain-name-servers ns1.example.org, ns2.example.org;/c\#option domain-name-servers ns1.example.org, ns2.example.org;' /etc/dhcp/dhcpd.conf
     sed -i '/#authoritative;/c\authoritative;' /etc/dhcp/dhcpd.conf
@@ -184,21 +188,26 @@ else
     sed -e '/#DHCP ADD/{r /var/www/html/Install/dhcpadd.sun' -e 'd}' -i.bak /etc/dhcp/dhcpd.conf
 
 #Editing /etc/default/isc-dhcp-server
+    echo "Editing /etc/default/isc-dhcp-server"
     sed -i '#DHCPD_CONF=/etc/dhcp/dhcpd.conf/c\DHCPD_CONF=/etc/dhcp/dhcpd.conf' /etc/default/isc-dhcp-server
     sed -i '/INTERFACES=""/c\INTERFACES="wlan0"' /etc/default/isc-dhcp-server
     service isc-dhcp-server restart
 
 #Editing /etc/hostapd/hostapd.conf
+    echo "Editing /etc/hostapd/hostapd.conf"
     echo "#HOSTAPD ADD">>/etc/hostapd/hostapd.conf
     sed -e '/#HOSTAPD ADD/{r /var/www/html/Install/hostapdadd.sun' -e 'd}' -i.bak /etc/hostapd/hostapd.conf
 
 #Editing /etc/default/hostapd
+    echo "Editing /etc/default/hostapd"
     sed -i '/#DAEMON_CONF=""/c\DAEMON_CONF="/etc/hostapd/hostapd.conf"' /etc/default/hostapd
 
 #Editing /etc/init.d/hostapd
+    echo "Editing /etc/init.d/hostapd"
     sed -i '/DAEMON_CONF=/c\DAEMON_CONF=/etc/hostapd/hostapd.conf'
 
 #Editing /etc/sysctl.conf and forwarding wireless connection to ethernet
+    echo "Editing /etc/sysctl.conf forwarding wireless connection to ethernet"
     sed -i '/#net.ipv4.ip_forward=1/c\net.ipv4.ip_forward=1' /etc/sysctl.conf
     sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
     iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
@@ -206,7 +215,8 @@ else
     iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
     sh -c "iptables-save > /etc/iptables/rules.v4"
 
-#Start adn setup the daemon so it runs at boot
+#Start and setup the daemon so it runs at boot
+    echo "start and setup daemon so it runs at boot"
     ifdown wlan0
     ifconfig wlan0 192.168.42.1
     service hostapd start
@@ -215,5 +225,6 @@ else
     update-rc.d hostapd enable
     update-rc.d isc-dhcp-server enable
 
+    echo "setting flag indicating install was successful"
     sed -i '/installed=0/c\installed=1' /var/www/html/Install/config.sun
 fi
