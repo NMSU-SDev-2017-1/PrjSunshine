@@ -79,6 +79,8 @@ function showhelp() {
     echo "                 is run except for the first time"
     echo
     echo "-h, --help       to see this message"
+    echo " If -u and -f are used together, then the background programs will"
+    echo " not be uninstalled, only the files will be reverted"
     quit
 }
 
@@ -102,9 +104,11 @@ function undoInstall() {
     cd /var/www/html
     rm -r *
 
+if [ $FILESONLY = "0" ]; then
     apt-get remove iptables-persistent
     apt-get remove hostapd isc-dhcp-server
     apt-get remove apache2 php5
+fi
     quit
 }
 
@@ -114,6 +118,8 @@ function copyfiles() {
     cd /var/www/html
     rm -r .git
     rm .gitignore
+    cd "RPI Box"
+    g++ cam.cpp -std=c++11 -o cam
     return
 }
 
