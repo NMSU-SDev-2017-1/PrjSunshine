@@ -204,7 +204,7 @@ else
 
 #Editing /etc/init.d/hostapd
     echo "Editing /etc/init.d/hostapd"
-    sed -i '/DAEMON_CONF=/c\DAEMON_CONF=/etc/hostapd/hostapd.conf'
+    sed -i '/DAEMON_CONF=/c\DAEMON_CONF=/etc/hostapd/hostapd.conf' /etc/init.d/hostapd
 
 #Editing /etc/sysctl.conf and forwarding wireless connection to ethernet
     echo "Editing /etc/sysctl.conf forwarding wireless connection to ethernet"
@@ -219,6 +219,7 @@ else
     echo "start and setup daemon so it runs at boot"
     ifdown wlan0
     ifconfig wlan0 192.168.42.1
+    /usr/sbin/hostapd /etc/hostapd/hostapd.conf
     service hostapd start
     service isc-dhcp-server start
 
