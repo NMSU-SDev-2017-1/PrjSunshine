@@ -31,9 +31,8 @@
 	$fileString .= "DELAY= ".$finalTime."\n";
 
 	file_put_contents("../../RPI Box/ProjectSunshine/Input/commands.sun", "");
-	if(file_put_contents("../../RPI Box/ProjectSunshine/Input/commands.sun", $fileString)){
-		echo json_encode('Success!');
-	}
+	file_put_contents("../../RPI Box/ProjectSunshine/Input/commands.sun", $fileString)
+	echo json_encode('Success!');
 	
 
 	//Purpose: Convert time a given time to seconds

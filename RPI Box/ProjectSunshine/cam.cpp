@@ -50,7 +50,7 @@ void Cam::readIn(int n)
 
 	//file.open("Input/commands.sun");
 	// UI will save file to /var/www/html/"RPI Box"/ProjectSunshine/Input/commands.sun
-	file.open("/var/www/html/"RPI Box"/ProjectSunshine/Input/commands.sun");
+	file.open("/var/www/html/"+"RPI Box"+"/ProjectSunshine/Input/commands.sun");
 
 	//Read word by word
 	while (file >> word)
@@ -91,7 +91,7 @@ void Cam::takePic(int n)
 	//Command format
 	cmd = ("sudo raspistill -o ");
 	//path = ("/home/pi/ProjectSunshine/Pictures/");
-	path = ("/var/www/html/"RPI Box"/ProjectSunshine/Pictures/");
+	path = ("/var/www/html/"+"RPI Box"+"/ProjectSunshine/Pictures/");
 	date = ("02032017");
 	ext = (".jpg");
 	end = (" -n");
