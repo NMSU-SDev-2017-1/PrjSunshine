@@ -30,6 +30,8 @@
 	$fileString .= "INTERVAL= 5\n";
 	$fileString .= "DELAY= ".$finalTime."\n";
  
+ 	$pwd = getcwd();
+
  	$fileString = 'CHANGED';
 
 	$fileRoot = "/var/www/html/";
@@ -42,7 +44,7 @@
 
 	file_put_contents($fileRoot."RPI_Box/ProjectSunshine/Input/commands.sun", "");
 	file_put_contents($fileRoot."RPI_Box/ProjectSunshine/Input/commands.sun", $fileString);
-	echo json_encode($fileTime);
+	echo json_encode($finalTime);
 	
 
 	//Purpose: Convert time a given time to seconds
