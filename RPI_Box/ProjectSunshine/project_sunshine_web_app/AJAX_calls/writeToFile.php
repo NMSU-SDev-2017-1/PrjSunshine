@@ -30,14 +30,13 @@
 	$fileString .= "INTERVAL= 5\n";
 	$fileString .= "DELAY= ".$finalTime."\n";
  
- 	$fileName = "../../Input/commands.sun";
+ 	$fileName = "../../Input/commands.txt";
 	$fileFoundBoolean = file_exists($fileName);
 
 	if($fileFoundBoolean == false){
 		echo json_encode('Could not find file');
 	}
 	$myfile = fopen($fileName, "w");
-	$txt = "Mickey Mouse\n";
 	fwrite($myfile, $fileString);
 	fclose($myfile);
 
