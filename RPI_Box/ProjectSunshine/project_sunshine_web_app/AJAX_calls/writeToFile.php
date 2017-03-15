@@ -30,7 +30,7 @@
 	$fileString .= "INTERVAL= 5\n";
 	$fileString .= "DELAY= ".$finalTime."\n";
  
- 	$fileName = "../../Input/commands.txt";
+ 	$fileName = "commands.txt";
 	$fileFoundBoolean = file_exists($fileName);
 
 	if($fileFoundBoolean == false){
@@ -40,7 +40,7 @@
 	fwrite($myfile, $fileString);
 	fclose($myfile);
 
-	echo json_encode('Delay: ' . $finalTime." File found?? ".$fileFoundBoolean);
+	echo json_encode('Delay: ' . $finalTime." File found?? ".$fileFoundBoolean. "Written to file: " . $fileName);
 	
 
 	//Purpose: Convert time a given time to seconds
