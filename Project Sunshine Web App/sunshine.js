@@ -59,5 +59,5 @@ function failAlert(message){
 
 function successAlert(message){
 	$(".PopupPanel").html(message).toggle();
-    $( ".PopupPanel" ).delay( 3000 ).fadeOut(200);
+  $( ".PopupPanel" ).delay( 3000 ).fadeOut(200);
 }
