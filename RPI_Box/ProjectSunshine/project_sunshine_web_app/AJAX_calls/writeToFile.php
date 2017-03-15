@@ -30,7 +30,7 @@
 	$fileString .= "INTERVAL= 5\n";
 	$fileString .= "DELAY= ".$finalTime."\n";
  
- 	$fileName = "commands.txt";
+ 	$fileName = "commands.sun";
 	$fileFoundBoolean = file_exists($fileName);
 
 	if($fileFoundBoolean == false){
