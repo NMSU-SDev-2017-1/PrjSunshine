@@ -29,18 +29,9 @@
 	$fileString .= "PICNUM= 1\n";
 	$fileString .= "INTERVAL= 5\n";
 	$fileString .= "DELAY= ".$finalTime."\n";
- 
- 	$fileName = "commands.sun";
-	$fileFoundBoolean = file_exists($fileName);
-
-	if($fileFoundBoolean == false){
-		echo json_encode('Could not find file');
-	}
-	$myfile = fopen($fileName, "w");
-	fwrite($myfile, $fileString);
-	fclose($myfile);
-
-	$dir = 'COMMANDS';
+ 	
+	//On initial set up create directory with proper permissions
+	$dir = 'Input';
 
  	// create new directory with 744 permissions if it does not exist yet
  	// owner will be the user/group the PHP script is run under
@@ -49,10 +40,12 @@
      	mkdir ($dir, 0744);
  	}
 
- 	file_put_contents ($dir.'/test.txt', 'Hello File');
+ 	$fileName = $dir.'/commands.sun';
+ 	
+ 	file_put_contents ($fileName, $fileString);
 	
 
-	echo json_encode('Delay: ' . $finalTime." File found?? ".$fileFoundBoolean. "Written to file: " . $fileName);
+	echo json_encode('Delay: ' . $finalTime." Written to file: " . $fileName);
 	
 
 	//Purpose: Convert time a given time to seconds
