@@ -29,6 +29,8 @@
 	$fileString .= "PICNUM= 1\n";
 	$fileString .= "INTERVAL= 5\n";
 	$fileString .= "DELAY= ".$finalTime."\n";
+ 
+ 	$fileString = 'CHANGED';
 
 	$fileRoot = "/var/www/html/";
 	$filePath = $fileRoot . "RPI_Box/ProjectSunshine/Input/commands.sun";
@@ -40,7 +42,7 @@
 
 	file_put_contents($fileRoot."RPI_Box/ProjectSunshine/Input/commands.sun", "");
 	file_put_contents($fileRoot."RPI_Box/ProjectSunshine/Input/commands.sun", $fileString);
-	echo json_encode('Success!');
+	echo json_encode($fileTime);
 	
 
 	//Purpose: Convert time a given time to seconds
