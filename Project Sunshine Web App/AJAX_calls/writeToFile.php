@@ -32,8 +32,6 @@
  
  	$pwd = getcwd();
 
- 	$fileString = 'CHANGED';
-
 	$fileRoot = "/var/www/html/";
 	$filePath = $fileRoot . "RPI_Box/ProjectSunshine/Input/commands.sun";
 	$fileFoundBoolean = file_exists($filePath);
@@ -42,9 +40,9 @@
 		echo json_encode('Could not find file');
 	}
 
-	file_put_contents($fileRoot."RPI_Box/ProjectSunshine/Input/commands.sun", "");
+	//file_put_contents($fileRoot."RPI_Box/ProjectSunshine/Input/commands.sun", "");
 	file_put_contents($fileRoot."RPI_Box/ProjectSunshine/Input/commands.sun", $fileString);
-	echo json_encode($finalTime);
+	echo json_encode($finalTime . " File found?? " $fileFoundBoolean);
 	
 
 	//Purpose: Convert time a given time to seconds
