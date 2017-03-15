@@ -25,7 +25,7 @@
 	//Write final time to file
 	$fileString = "SET= 1\n";
 	$fileString .=  "DATE= 3 Mar 2017\n";
-	$fileString .= "TIME= 0550\n";
+	$fileString .= "TIME= ".$userHour.$userMinute."\n";
 	$fileString .= "PICNUM= 1\n";
 	$fileString .= "INTERVAL= 5\n";
 	$fileString .= "DELAY= ".$finalTime."\n";
@@ -41,7 +41,7 @@
 	fwrite($myfile, $fileString);
 	fclose($myfile);
 
-	echo json_encode($finalTime." File found?? ".$fileFoundBoolean);
+	echo json_encode('Delay: ' . $finalTime." File found?? ".$fileFoundBoolean);
 	
 
 	//Purpose: Convert time a given time to seconds
