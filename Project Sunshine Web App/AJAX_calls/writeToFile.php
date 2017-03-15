@@ -31,15 +31,15 @@
 	$fileString .= "DELAY= ".$finalTime."\n";
 
 	$fileRoot = "/var/www/html/";
-	$filePath = $fileRoot . 'RPI_Box/ProjectSunshine/Input/commands.sun';
+	$filePath = $fileRoot . "RPI_Box/ProjectSunshine/Input/commands.sun";
 	$fileFoundBoolean = file_exists($filePath);
 
 	if($fileFoundBoolean == false){
 		echo json_encode('Could not find file');
 	}
 
-	file_put_contents($fileRoot."/RPI_Box/ProjectSunshine/Input/commands.sun", "");
-	file_put_contents($fileRoot."/RPI_Box/ProjectSunshine/Input/commands.sun", $fileString);
+	file_put_contents($fileRoot."RPI_Box/ProjectSunshine/Input/commands.sun", "");
+	file_put_contents($fileRoot."RPI_Box/ProjectSunshine/Input/commands.sun", $fileString);
 	echo json_encode('Success!');
 	
 
