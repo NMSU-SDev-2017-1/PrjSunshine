@@ -5,11 +5,11 @@
   
 	<title>Project Sunshine</title>
   <!-- Include jQuery -->
-  <script src="properties/third_party_plugins/jQuery/jquery-3.1.1.min.js"></script>
+  <script src="project_sunshine_web_app/properties/third_party_plugins/jQuery/jquery-3.1.1.min.js"></script>
   
 	<!-- Bootstrap -->
-	<link href="properties/third_party_plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<script src="properties/third_party_plugins/bootstrap/js/bootstrap.js"></script>	
+	<link href="project_sunshine_web_app/properties/third_party_plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="project_sunshine_web_app/properties/third_party_plugins/bootstrap/js/bootstrap.js"></script>	
 	
 </head>
 <!-- Begin HTML -->

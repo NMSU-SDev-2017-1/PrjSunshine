@@ -41,7 +41,7 @@ function writeToFile(hour, minute, timeOfDay){
 function writeToFileAJAX(hour, minute, timeOfDay){
 	return $.ajax({
         type: "POST",
-        url: "AJAX_calls/writeToFile.php",
+        url: "project_sunshine_web_app/AJAX_calls/writeToFile.php",
         dataType: "json",
         data: {
             hour: hour,

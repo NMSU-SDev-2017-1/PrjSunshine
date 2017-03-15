@@ -30,18 +30,17 @@
 	$fileString .= "INTERVAL= 5\n";
 	$fileString .= "DELAY= ".$finalTime."\n";
  
- 	$pwd = getcwd();
- 	error_log($pwd);
-	$fileRoot = "/var/www/html/";
-	$filePath = $fileRoot . "RPI_Box/ProjectSunshine/Input/commands.sun";
-	$fileFoundBoolean = file_exists($filePath);
+ 	$fileName = "../../Input/commands.sun";
+	$fileFoundBoolean = file_exists($fileName);
 
 	if($fileFoundBoolean == false){
 		echo json_encode('Could not find file');
 	}
+	$myfile = fopen($fileName, "w");
+	$txt = "Mickey Mouse\n";
+	fwrite($myfile, $fileString);
+	fclose($myfile);
 
-	//file_put_contents($fileRoot."RPI_Box/ProjectSunshine/Input/commands.sun", "");
-	file_put_contents($filePath, $fileString);
 	echo json_encode($finalTime." File found?? ".$fileFoundBoolean);
 	
 

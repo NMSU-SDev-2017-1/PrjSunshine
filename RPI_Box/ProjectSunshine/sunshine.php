@@ -1,8 +1,8 @@
 <?php
-	require_once('properties/template/navigation_menu.php');
+	require_once('project_sunshine_web_app/properties/template/navigation_menu.php');
 ?>
 <!--Link our ProjectSunshine custom css-->
-<link rel="stylesheet" href="properties/template/custom.css">
+<link rel="stylesheet" href="project_sunshine_web_app/properties/template/custom.css">
 <!--Link specific JavaScript-->
 <script src="sunshine.js?<?php echo time(); ?>" type="text/javascript"></script>
 <!--Page specific content begins here-->
