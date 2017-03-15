@@ -32,11 +32,7 @@
 
 	file_put_contents("../../RPI Box/ProjectSunshine/Input/commands.sun", "");
 	if(file_put_contents("../../RPI Box/ProjectSunshine/Input/commands.sun", $fileString)){
-		
-		//After writting to file, execute C++ program and return status
-		if(exec("../../RPI Box/ProjectSunshine/cam")){
-			echo json_encode('Success!');
-		}
+		echo json_encode('Success!');
 	}
 	
 
