@@ -29,7 +29,7 @@ $(document).ready(function(){
 function writeToFile(hour, minute, timeOfDay){
 		var promise = writeToFileAJAX(hour, minute, timeOfDay);	
 		promise.done(function(json){
-			successAlert('Submit successful!');
+      failAlert(json);
  		});
 
     	promise.fail(function(json) {
