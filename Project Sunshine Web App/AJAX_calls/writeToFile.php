@@ -30,8 +30,8 @@
 	$fileString .= "INTERVAL= 5\n";
 	$fileString .= "DELAY= ".$finalTime."\n";
 
-	file_put_contents("../../RPI Box/ProjectSunshine/Input/commands.sun", "");
-	file_put_contents("../../RPI Box/ProjectSunshine/Input/commands.sun", $fileString)
+	file_put_contents("../../RPI_Box/ProjectSunshine/Input/commands.sun", "");
+	file_put_contents("../../RPI_Box/ProjectSunshine/Input/commands.sun", $fileString)
 	echo json_encode('Success!');
 	
 

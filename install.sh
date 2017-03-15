@@ -118,7 +118,7 @@ function copyfiles() {
     cd /var/www/html
     rm -r .git
     rm .gitignore
-    cd "RPI Box"/ProjectSunshine
+    cd "RPI_Box"/ProjectSunshine
     g++ cam.cpp -std=c++11 -o cam
     return
 }
