@@ -31,19 +31,18 @@
 	$fileString .= "DELAY= ".$finalTime."\n";
  	
 	//On initial set up create directory with proper permissions
-	$dir = 'Input';
+	$dir = '../../Input';
 
  	// create new directory with 744 permissions if it does not exist yet
  	// owner will be the user/group the PHP script is run under
  	if ( !file_exists($dir) ) {
     	$oldmask = umask(0);  // helpful when used in linux server  
-     	mkdir ($dir, 0744);
+     	mkdir($dir, 0744);
  	}
 
- 	$fileName = $dir.'/commands.sun';
+ 	$fileName = $dir . 'commands.sun';
  	
  	file_put_contents ($fileName, $fileString);
-	
 
 	echo json_encode('Delay: ' . $finalTime." Written to file: " . $fileName);
 	
