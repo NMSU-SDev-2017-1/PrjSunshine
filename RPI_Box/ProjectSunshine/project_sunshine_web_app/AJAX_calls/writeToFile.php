@@ -22,30 +22,33 @@
 		$finalTime = $userTime - $time;
 	}
 
+	//Get current date for photo
+	$monthDayYear = date("m/d/y");
+
 	//Write final time to file
-	$fileString = "SET= 1\n";
-	$fileString .=  "DATE= 3 Mar 2017\n";
-	$fileString .= "TIME= ".$userHour.$userMinute."\n";
-	$fileString .= "PICNUM= 1\n";
-	$fileString .= "INTERVAL= 5\n";
-	$fileString .= "DELAY= ".$finalTime."\n";
+	$fileString = "<set>1</set>\n";
+	$fileString .=  "<date>".$monthDayYear."</date>\n";
+	$fileString .= "<time>".$userHour.$userMinute."</time>\n";
+	$fileString .= "<pictureNumber>1</pictureNumber>\n";
+	$fileString .= "<interval>5</interval>\n";
+	$fileString .= "<delay>".$finalTime."</delay>\n";
  	
-	//On initial set up create directory with proper permissions
-	$dir = '../../Input';
-
- 	// create new directory with 744 permissions if it does not exist yet
- 	// owner will be the user/group the PHP script is run under
- 	if ( !file_exists($dir) ) {
-    	$oldmask = umask(0);  // helpful when used in linux server  
-     	mkdir($dir, 0744);
- 	}
-
  	$fileName = $dir . 'commands.sun';
  	
- 	file_put_contents ($fileName, $fileString);
-
-	echo json_encode('Delay: ' . $finalTime." Written to file: " . $fileName);
+ 	$fileBoolean = file_put_contents ($fileName, $fileString);
+ 	$success = true;
+ 	if($fileBoolean == true){
+ 		$results['SUCCESS'] = 'Request has been successfully processed';
+ 	}else{
+ 		$success = false;
+ 		$results['ERROR'] = 'Writting to file has failed, please try again.';
+ 	}
 	
+	if($success == true){
+		echo json_encode($results['SUCCESS']);
+	}else{
+		echo json_encode($results['ERROR']);
+	}
 
 	//Purpose: Convert time a given time to seconds
 	function convertTimeToSeconds($hour,$minute, $timeOfDay){
