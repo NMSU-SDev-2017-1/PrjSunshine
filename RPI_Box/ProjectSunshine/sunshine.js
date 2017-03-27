@@ -1,30 +1,35 @@
 $(document).ready(function(){
-	//Validation for user submits for photo
-	$( "#submitTimePhoto" ).click(function() {
-  		//Get user selected options
-  		var hour = $('#hour').val();
-  		var minute = $('#minute').val();
-  		var timeOfDay = $('#12Hour').val();
-  		
-  		//Validate user responce
-  		if(hour == 'none'){
-  			failAlert('Please select an hour to take the photo');
-  			return;
-  		}
-  		else if(minute == 'none'){
-  			failAlert('Please select a minute to take the photo');
-  			return;
-  		}
-  		else if(timeOfDay == 'none'){
-  			failAlert('Please select either AM or PM to take the photo');
-  			return;
-  		}
-
-  		writeToFile(hour, minute, timeOfDay);
-	});
-
+  //On page load if user has photos within images directory show div with content
+  checkForPhotos();
 });//End doc on ready
 
+//---------------------------------------------------------------
+//************************
+//Validation and processing for user submits for photo
+//************************
+//---------------------------------------------------------------
+$(document).on("click","#submitTimePhoto",function() {
+  //Get user selected options
+  var hour = $('#hour').val();
+  var minute = $('#minute').val();
+  var timeOfDay = $('#12Hour').val();
+  
+  //Validate user responce
+  if(hour == 'none'){
+    failAlert('Please select an hour to take the photo');
+    return;
+  }
+  else if(minute == 'none'){
+    failAlert('Please select a minute to take the photo');
+    return;
+  }
+  else if(timeOfDay == 'none'){
+    failAlert('Please select either AM or PM to take the photo');
+    return;
+  }
+
+  writeToFile(hour, minute, timeOfDay);
+});
 //Purpose: Pass user values into text file to be read by Java program
 function writeToFile(hour, minute, timeOfDay){
 		var promise = writeToFileAJAX(hour, minute, timeOfDay);	
@@ -51,6 +56,21 @@ function writeToFileAJAX(hour, minute, timeOfDay){
 	})
 }
 
+//---------------------------------------------------------------
+//************************
+//Show images
+//Purpose: If user has any items witnin images subfolder display associated div to display photos
+//************************
+//---------------------------------------------------------------
+function checkForPhotos(){
+
+}
+//
+//---------------------------------------------------------------
+//************************
+//Various divs and warning associated with messages for user
+//************************
+//---------------------------------------------------------------
 //Purpose: Depending on action taken by user, alert them with message displayed in red
 function failAlert(message){
 	$(".WarningMessage").html(message).toggle();

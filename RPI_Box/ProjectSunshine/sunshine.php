@@ -21,15 +21,18 @@
 	<div class="col-md-12 fluid">
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<div class="panel-title text-left">Getting started</div>
+				<div class="panel-title text-left">Help</div>
 			</div>
 			<div class="panel-body">
-
+				<label><b><i>Getting Started</i></b></label>
+				<ul>
+					<li>Begin by selected hour, minute and AM/PM options for the photo.</li>
+				</ul>
 			</div><!--End panel body-->
 		</div><!--End panel-->
 	</div>
 	<!--End Tutorial-->
-	
+
 	<!--Begin photo options-->
 	<div class="col-md-12">
 		<div class="panel panel-gettingStarted">
@@ -83,5 +86,21 @@
 		</div><!--End panel-->
 	</div>
 	<!--End photo options-->
+
+	<!--Photo container-->
+	<!--By default div is hidden unless user has images within images directory-->
+	<div class="col-md-12" style="display:none">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<div class="panel-title text-left">My Photos</div>
+			</div>
+			<div class="panel-body">
+				<?php  
+					require_once('project_sunshine_web_app/properties/slideshow.php');
+				?>
+			</div><!--End panel body-->
+		</div><!--End panel-->
+	</div>
+	<!--End photo container-->
 </div>
 <!--End page content-->
