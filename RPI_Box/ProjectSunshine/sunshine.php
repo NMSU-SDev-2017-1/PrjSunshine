@@ -11,7 +11,7 @@
 <div class="container-fluid">
 
 	<!--If JavaScript process fails, warning messages are appended here-->
-	<div class="col-md-12 fluid">
+	<div class="col-md-12 fluid" id="fatalErrorWarning">
 		<div class="alert" style="display:none">
 	  		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
 		</div>
