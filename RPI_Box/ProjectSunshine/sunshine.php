@@ -27,6 +27,8 @@
 			<div class="panel-body">
 				<label><b><i>User Name</i></b></label>
 				<ul>
+
+					<img src="project_sunshine_web_app\properties\images\headerSunRaise.jpg" alt="profile" style="width:304px;height:228px;">
 					<button id="usernameprofile" class="btn btn-primary form-control pull-right">Create A profile</button>
 				</ul>
 			</div><!--End panel body-->
