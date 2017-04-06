@@ -13,17 +13,7 @@
 #borderimg1 { 
     border: 10px solid transparent;
     padding: 15px;
-    -webkit-border-image: url(border.png) 30 round; /* Safari 3.1-5 */
-    -o-border-image: url(border.png) 30 round; /* Opera 11-12.1 */
     border-image: url(border.png) 30 round;
-}
-
-#borderimg2 { 
-    border: 10px solid transparent;
-    padding: 15px;
-    -webkit-border-image: url(border.png) 30 stretch; /* Safari 3.1-5 */
-    -o-border-image: url(border.png) 30 stretch; /* Opera 11-12.1 */
-    border-image: url(border.png) 30 stretch;
 }
 </style>
 <div class="container-fluid">
@@ -61,7 +51,10 @@
 			<div class="panel-body">
 				<label><b><i>User Name</i></b></label>
 				<ul>
-					<img src="project_sunshine_web_app\properties\images\headerSunRaise.jpg" alt="profile" class="pull-left" style="width:304px;height:304px;border-radius:100% ">
+					<div>
+
+						<img src="project_sunshine_web_app\properties\images\hot-sun.png" alt="profile" class="pull-left" style=" background-border: url(project_sunshine_web_app\properties\images\headerSunRaise.jpg); width:304px; height:304px;">
+					</div>
 					<button id="usernameprofile" style="width:304px;height:50px;" class="btn btn-primary form-control pull-left">Edit</button>
 				</ul>
 			</div><!--End panel body-->
@@ -117,6 +110,16 @@
 				</div>
 				<div class="col-md-2">
 					<button id="submitTimePhoto" class="btn btn-primary form-control pull-right">Submit</button>
+				</div>
+				<!--type-->
+				<div class="col-md-4">
+					<label>camera: </label>
+					<select class="form-control" id="camera">
+						<option value='none'>select camera</option>
+						<option value="am">intergrated</option>
+						<option value="pm">SLR</option>
+	  				</select>
+	  				<br>
 				</div>
 			</div><!--End panel body-->
 		</div><!--End panel-->
