@@ -44,22 +44,27 @@
 	<!--End Tutorial-->
 	<!--users profile set up-->
 	<div class="col-md-12 fluid">
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<div class="panel-title text-left">User Profile</div>
-			</div>
+		<div class="panel">
 			<div class="panel-body">
 				<label><b><i>User Name</i></b></label>
-				<ul>
 					<div>
-
-						<img src="project_sunshine_web_app\properties\images\hot-sun.png" alt="profile" class="pull-left" style=" background-border: url(project_sunshine_web_app\properties\images\headerSunRaise.jpg); width:304px; height:304px;">
+						<img src="project_sunshine_web_app\properties\images\headerSunRaise.jpg" alt="profile" class="pull-left" style=" width:150px; height:120px; border-radius: 100% ">
 					</div>
-					<button id="usernameprofile" style="width:304px;height:50px;" class="btn btn-primary form-control pull-left">Edit</button>
-				</ul>
+				
 			</div><!--End panel body-->
 		</div><!--End panel-->
 	</div>
+	<div class="col-md-12 fluid">
+		<div class="panel">
+			<div class="panel-body">
+					<div>
+						<button id="usernameprofile" style="width:304px;height:50px;" class="btn btn-primary form-control pull-left">Edit</button>
+					</div>
+				
+			</div><!--End panel body-->
+		</div><!--End panel-->
+	</div>
+
 	<!--End userProfile setup-->
 
 	<!--Begin photo options-->
