@@ -11,6 +11,7 @@
 <div class="container-fluid">
 
 	<!--If JavaScript process fails, warning messages are appended here-->
+
 	<div class="col-md-12 fluid" id="fatalErrorWarning">
 		<div class="alert" style="display:none">
 	  		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
@@ -18,6 +19,19 @@
 	</div>
 
 	<!--Tutorial for new users-->
+	<div class="col-md-12 fluid">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<div class="panel-title text-left">User Profile</div>
+			</div>
+			<div class="panel-body">
+				<label><b><i>User Name</i></b></label>
+				<ul>
+					<button id="usernameprofile" class="btn btn-primary form-control pull-right">Create A profile</button>
+				</ul>
+			</div><!--End panel body-->
+		</div><!--End panel-->
+	</div>
 	<div class="col-md-12 fluid">
 		<div class="panel panel-info">
 			<div class="panel-heading">

@@ -8,7 +8,7 @@ $(document).ready(function(){
 //Validation and processing for user submits for photo
 //************************
 //---------------------------------------------------------------
-$(document).on("click","#submitTimePhoto",function() {
+$(document).on("click","usernameprofile",function() {
   //Get user selected options
   var hour = $('#hour').val();
   var minute = $('#minute').val();
@@ -30,6 +30,28 @@ $(document).on("click","#submitTimePhoto",function() {
 
   writeToFile(hour, minute, timeOfDay);
 });
+$(document).on("click","#submitTimePhoto",function() {
+  //Get user selected options
+  var hour = $('#hour').val();
+  var minute = $('#minute').val();
+  var timeOfDay = $('#12Hour').val();
+  
+  //Validate user responce
+  if(hour == 'none'){
+    failAlert('Please select an hour to take the photo');
+    return;
+  }
+  else if(minute == 'none'){
+    failAlert('Please select a minute to take the photo');
+    return;
+  }
+  else if(timeOfDay == 'none'){
+    failAlert('Please select either AM or PM to take the photo');
+    return;
+  }
+
+  writetoUsername(hour, minute, timeOfDay);
+});
 //Purpose: Pass user values into text file to be read by Java program
 function writeToFile(hour, minute, timeOfDay){
 		var promise = writeToFileAJAX(hour, minute, timeOfDay);	
@@ -40,6 +62,16 @@ function writeToFile(hour, minute, timeOfDay){
     	promise.fail(function(json) {
     		failAlert('Failed to save information');
     	});
+}
+function writetoUsername(image, username){
+    var promise = createUserProflie(image, username); 
+    promise.done(function(json){
+      failAlert(json);
+    });
+
+      promise.fail(function(json) {
+        failAlert('Failed to save information');
+      });
 }
 
 //Purpose: Write count down timer to file using AJAX
@@ -53,8 +85,20 @@ function writeToFileAJAX(hour, minute, timeOfDay){
             minute : minute,
             timeOfDay: timeOfDay
         }
-	})
+      })
 }
+function createUserProflie(image, username){
+  return $.ajax({
+        type: "POST",
+        url: "project_sunshine_web_app/AJAX_calls/user.php",
+        dataType: "json",
+        data: {
+            image: image,
+            username: username
+        }
+      })
+}
+    
 
 //---------------------------------------------------------------
 //************************
