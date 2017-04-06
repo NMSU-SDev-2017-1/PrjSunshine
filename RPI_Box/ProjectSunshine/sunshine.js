@@ -10,22 +10,11 @@ $(document).ready(function(){
 //---------------------------------------------------------------
 $(document).on("click","usernameprofile",function() {
   //Get user selected options
-  var hour = $('#hour').val();
-  var minute = $('#minute').val();
-  var timeOfDay = $('#12Hour').val();
+  image
+
+  var username = $('#username').val();
   
-  //Validate user responce
-  if(hour == 'none'){
-    failAlert('Please select an hour to take the photo');
-    return;
-  }
-  else if(minute == 'none'){
-    failAlert('Please select a minute to take the photo');
-    return;
-  }
-  else if(timeOfDay == 'none'){
-    failAlert('Please select either AM or PM to take the photo');
-    return;
+
   }
 
   writeToFile(hour, minute, timeOfDay);
