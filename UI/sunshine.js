@@ -24,6 +24,7 @@ $(document).on("click","#submitTimePhoto",function() {
   var hour = $('#hour').val();
   var minute = $('#minute').val();
   var timeOfDay = $('#12Hour').val();
+  var camType = $('#camType').val();
   
   //Validate user responce
   if(hour == 'none'){
@@ -38,12 +39,16 @@ $(document).on("click","#submitTimePhoto",function() {
     failAlert('Please select either AM or PM to take the photo');
     return;
   }
+  else if(camera == 'none'){
+    fail Alert('Please select either integrated or SLR camera for taking the photo');
+    return;
+  }
 
   writetoUsername(hour, minute, timeOfDay);
 });
 //Purpose: Pass user values into text file to be read by Java program
-function writeToFile(hour, minute, timeOfDay){
-		var promise = writeToFileAJAX(hour, minute, timeOfDay);	
+function writeToFile(hour, minute, timeOfDay, camType){
+		var promise = writeToFileAJAX(hour, minute, timeOfDay, camType);	
 		promise.done(function(json){
       failAlert(json);
  		});
@@ -64,7 +69,7 @@ function writetoUsername(image, username){
 }
 
 //Purpose: Write count down timer to file using AJAX
-function writeToFileAJAX(hour, minute, timeOfDay){
+function writeToFileAJAX(hour, minute, timeOfDay, camType){
 	return $.ajax({
         type: "POST",
         url: "project_sunshine_web_app/AJAX_calls/writeToFile.php",
@@ -72,7 +77,8 @@ function writeToFileAJAX(hour, minute, timeOfDay){
         data: {
             hour: hour,
             minute : minute,
-            timeOfDay: timeOfDay
+            timeOfDay: timeOfDay,
+	    camType : camType
         }
       })
 }

@@ -90,7 +90,7 @@
 				</div>
 				<!-- Minutes -->
 				<div class="col-md-4">
-					<label>Mintue: </label>
+					<label>Minute: </label>
 					<select class="form-control" id="minute">
 						<option value='none'>Select Minute</option>
 						<?php  
@@ -117,12 +117,12 @@
 					<button id="submitTimePhoto" class="btn btn-primary form-control pull-right">Submit</button>
 				</div>
 				<!--type-->
-				<div class="col-md-4">
+				<div class="col-md-4", id>
 					<label>camera: </label>
 					<select class="form-control" id="camera">
 						<option value='none'>select camera</option>
-						<option value="am">intergrated</option>
-						<option value="pm">SLR</option>
+						<option value="integrated">intergrated</option>
+						<option value="SLR">SLR</option>
 	  				</select>
 	  				<br>
 				</div>
