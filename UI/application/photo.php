@@ -1,7 +1,7 @@
 <div class="col-md-12">
 		<div class="panel panel-gettingStarted">
 			<div class="panel-heading">
-				<div class="panel-title text-left">Photo Options</div>
+				<div class="panel-title text-left">Timed Photo</div>
 			</div>
 			<div class="panel-body">
 				<!-- Hour -->
@@ -32,6 +32,7 @@
 						?>
 					</select>
 				</div>
+				<!--Time of Day-->
 				<div class="col-md-4">
 					<label>AM/PM: </label>
 					<select class="form-control" id="12Hour">
@@ -41,20 +42,21 @@
 	  				</select>
 	  				<br>
 				</div>
-				<div class ="col-md-10">
-				</div>
-				<div class="col-md-2">
-					<button id="submitTimePhoto" class="btn btn-primary form-control pull-right">Submit</button>
-				</div>
-				<!--type-->
+				<!--Camera Type-->
 				<div class="col-md-4", id>
-					<label>camera: </label>
+					<label>Camera: </label>
 					<select class="form-control" id="camera">
-						<option value='none'>select camera</option>
+						<option value='none'>Select camera</option>
 						<option value="integrated">intergrated</option>
 						<option value="SLR">SLR</option>
 	  				</select>
 	  				<br>
+				</div>
+				<!-- Submit button and padding-->
+				<div class ="col-md-10">
+				</div>
+				<div class="col-md-2">
+					<button id="submitTimePhoto" class="btn btn-primary form-control pull-right">Submit</button>
 				</div>
 			</div><!--End panel body-->
 		</div><!--End panel-->

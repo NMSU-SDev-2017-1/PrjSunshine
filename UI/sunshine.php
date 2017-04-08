@@ -32,7 +32,7 @@
     <div id="menu2" class="tab-pane fade">
     	<br>
     	<?php 
-      		require_once('application/timedPhoto.php');
+      		require_once('application/photo.php');
        	?>
     </div>
   </div>
