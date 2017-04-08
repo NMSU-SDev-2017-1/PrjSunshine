@@ -1,24 +1,15 @@
 $(document).ready(function(){
-  //On page load if user has photos within images directory show div with content
-  checkForPhotos();
+  $( ".tablinks" ).click(function(){
+        var tabText = $(this).text();
+        
+        hideAllDataTables();
+        openReportTab(event, tabText);
+    });
+  
+  //Always have academic as default open tab
+  document.getElementById("menu2Tab").click();
 });//End doc on ready
 
-//---------------------------------------------------------------
-//************************
-//Validation and processing for user submits for photo
-//************************
-//---------------------------------------------------------------
-$(document).on("click","usernameprofile",function() {
-  //Get user selected options
-  image
-
-  var username = $('#username').val();
-  
-
-  }
-
-  writeToFile(hour, minute, timeOfDay);
-});
 $(document).on("click","#submitTimePhoto",function() {
   //Get user selected options
   var hour = $('#hour').val();
@@ -40,7 +31,7 @@ $(document).on("click","#submitTimePhoto",function() {
     return;
   }
   else if(camera == 'none'){
-    fail Alert('Please select either integrated or SLR camera for taking the photo');
+    failAlert('Please select either integrated or SLR camera for taking the photo');
     return;
   }
 
@@ -119,4 +110,24 @@ function failAlert(message){
 function successAlert(message){
 	$(".PopupPanel").html(message).toggle();
   $( ".PopupPanel" ).delay( 3000 ).fadeOut(200);
+}
+//Purpose: On click, open tab selected by user
+function openReportTab(evt, textValue) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(textValue).style.display = "block";
+    evt.currentTarget.className += " active";
 }

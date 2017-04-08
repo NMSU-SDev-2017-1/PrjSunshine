@@ -1,3 +1,7 @@
+<!-- 
+  Files included in this page should be stlye sheets common across all pages 
+  i.e Bootstrap and jQuery 
+-->
 <head>
   <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -5,29 +9,34 @@
   
 	<title>Project Sunshine</title>
   <!-- Include jQuery -->
-  <script src="project_sunshine_web_app/properties/third_party_plugins/jQuery/jquery-3.1.1.min.js"></script>
-  
-	<!-- Bootstrap -->
-	<link href="project_sunshine_web_app/properties/third_party_plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<script src="project_sunshine_web_app/properties/third_party_plugins/bootstrap/js/bootstrap.js"></script>	
-	
+  <script src="properties/third_party_plugins/jQuery/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap (Note: Bootstrap required jQuery, include after jQuery-->
+  <link href="properties/third_party_plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="properties/third_party_plugins/bootstrap/js/bootstrap.js"></script> 
+
+  <!--Custom css-->
+  <link rel="stylesheet" href="properties/template/custom.css">
 </head>
-<!-- Begin HTML -->
+<!--Navigation menu-->
+<!-- 
+  Note: As this project grows, we can uncomment navigation bars as needed
+ -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
+      </button> -->
       <a class="navbar-brand" href="#">Project Sunshine</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li>
@@ -63,8 +72,14 @@
           </ul>
         </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>/.navbar-collapse
+      </div>/.container-fluid -->
 </nav>
 <!-- End top header-->
-<div class="WarningMessage alert alert-danger" style="display: none;"></div>
+
+<!--For Fatal errors, append text values to div below-->
+<div class="col-md-12 fluid" id="fatalErrorWarning">
+  <div class="alert" style="display:none">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  </div>
+</div>
