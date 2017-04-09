@@ -72,7 +72,7 @@
 		<div class="panel-body">
 		<div class="col-md-12">
 			<!--Info div for us to append camera positioning for user-->
-			<div class="alert alert-info" style="display:none"></div>
+			<div id="photoInto" class="alert alert-info" style="display:none"></div>
 			<ul>
 				<li>Enter the zip code for the location your photo will be taken.</li>
 				<li>

@@ -4,13 +4,21 @@ $(document).ready(function(){
         
         hideAllDataTables();
         openReportTab(event, tabText);
-    });
+   });
   
   //Always have academic as default open tab
   document.getElementById("menu2Tab").click();
+
+  $( "#submitTimePhoto" ).click(function(){
+    submitTimePhoto();
+  });
+
+  $( "#zipCodePhoto" ).click(function(){
+    submitZipCodePhoto();
+  });
 });//End doc on ready
 
-$(document).on("click","#submitTimePhoto",function() {
+function submitTimePhoto(){
   //Get user selected options
   var hour = $('#hour').val();
   var minute = $('#minute').val();
@@ -36,7 +44,7 @@ $(document).on("click","#submitTimePhoto",function() {
   }
 
   writeToFile(hour, minute, timeOfDay,camType);
-});
+}
 //Purpose: Pass user values into text file to be read by Java program
 function writeToFile(hour, minute, timeOfDay, camType){
   $.ajax({
@@ -59,7 +67,7 @@ function writeToFile(hour, minute, timeOfDay, camType){
   });
 }
 //Purpose: Validate and process user information for a photo to be taken via zip code
-$(document).on("click","#zipCodePhoto",function(){
+function submitZipCodePhoto(){
   var zipCode = $('#zipCode').val();
   if(zipCode.length == 0){
     failAlert('To use this feature please enter a zip code.');
@@ -79,12 +87,15 @@ $(document).on("click","#zipCodePhoto",function(){
     }
   })
   .done(function(json){
-    successAlert('Successfully writen task to file.');
+    var fileDirections = "Photo directions: ";
+    $('#photoInto').empty();
+    $('#photoInto').append(fileDirections);
+    $('#photoInto').show();
   })
-  .fail(function(json) {
+  .fail(function(json){
     failAlert('Writing to file has failed, please reload page and try again.');
   });
-});
+}
 //---------------------------------------------------------------
 //--------------------------
 //Various divs and warning associated with messages for user
@@ -122,4 +133,11 @@ function openReportTab(evt, textValue) {
     // Show the current tab, and add an "active" class to the link that opened the tab
     document.getElementById(textValue).style.display = "block";
     evt.currentTarget.className += " active";
+
+    hideDivs();
+}
+
+//Purpose: Depdeding on user action, div informational divs
+function hideDivs(){
+  $('#photoInto').hide();
 }
