@@ -50,7 +50,7 @@ void Cam::readIn(int n)
 
 	//file.open("Input/commands.sun");
 	// UI will save file to /var/www/html/"RPI Box"/ProjectSunshine/Input/commands.sun
-	file.open("/var/www/html/RPI_Box/ProjectSunshine/Input/commands.sun");
+	file.open("/var/www/html/RPI_Box/ProjectSunshine/IO/in/commands.sun");
 
 	//Read word by word
 	while (file >> word)
@@ -89,9 +89,10 @@ void Cam::takePic(int n)
 {
 
 	//Command format
-	cmd = ("sudo raspistill -o ");
+	cmdIntegrated = ("sudo raspistill -o ");
+	cmdSLR = ("gphoto2 --capture-image-and-download --filename ");
 	//path = ("/home/pi/ProjectSunshine/Pictures/");
-	path = ("/var/www/html/RPI_Box/ProjectSunshine/Pictures/");
+	path = ("/var/www/html/RPI_Box/ProjectSunshine/IO/out");
 	date = ("02032017");
 	ext = (".jpg");
 	end = (" -n");
@@ -101,7 +102,11 @@ void Cam::takePic(int n)
 	//multiple protographs and other settings
 
 	//Build string
-	syscall = cmd + path + date + ext + end;
+	//Checks type of camera and make appropriate call
+	if(camType == "SLR")
+		syscall = cmdSLR + path + date + ext;
+	else
+		syscall = cmdIntegrated + path + date + ext + end;
 
 	std::cout << syscall << '\n';//(Debuging)
 

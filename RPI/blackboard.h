@@ -25,6 +25,7 @@ struct pictasks
 	std::string date;
 	int time;
 	int delay;
+	std::string camType;
 	bool done;
 
 }task1, task2;
