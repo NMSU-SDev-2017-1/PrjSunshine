@@ -4,13 +4,21 @@ $(document).ready(function(){
         
         hideAllDataTables();
         openReportTab(event, tabText);
-    });
+   });
   
   //Always have academic as default open tab
   document.getElementById("menu2Tab").click();
+
+  $( "#submitTimePhoto" ).click(function(){
+    submitTimePhoto();
+  });
+
+  $( "#zipCodePhoto" ).click(function(){
+    submitZipCodePhoto();
+  });
 });//End doc on ready
 
-$(document).on("click","#submitTimePhoto",function() {
+function submitTimePhoto(){
   //Get user selected options
   var hour = $('#hour').val();
   var minute = $('#minute').val();
@@ -36,7 +44,7 @@ $(document).on("click","#submitTimePhoto",function() {
   }
 
   writeToFile(hour, minute, timeOfDay,camType);
-});
+}
 //Purpose: Pass user values into text file to be read by Java program
 function writeToFile(hour, minute, timeOfDay, camType){
   $.ajax({
@@ -52,12 +60,42 @@ function writeToFile(hour, minute, timeOfDay, camType){
   })
   .done(function(json){
     fatalError('Done???');
+    successAlert('Successfully writen task to file.');
   })
   .fail(function(json) {
     failAlert('Writing to file has failed, please reload page and try again.');
   });
 }
-  
+//Purpose: Validate and process user information for a photo to be taken via zip code
+function submitZipCodePhoto(){
+  var zipCode = $('#zipCode').val();
+  if(zipCode.length == 0){
+    failAlert('To use this feature please enter a zip code.');
+    return;
+  } 
+  if(zipCode.length != 5){
+    failAlert('Zip code must be 5 digits long, please reenter');
+    return;
+  }
+  //At this point user input can be processed, begin by retriving nessesary zip code information
+  $.ajax({
+    type: "POST",
+    url: "AJAX_calls/writeToFileZipCode.php",
+    dataType: "json",
+    data: {
+      zipCode: zipCode
+    }
+  })
+  .done(function(json){
+    var fileDirections = "Photo directions: ";
+    $('#photoInto').empty();
+    $('#photoInto').append(fileDirections);
+    $('#photoInto').show();
+  })
+  .fail(function(json){
+    failAlert('Writing to file has failed, please reload page and try again.');
+  });
+}
 //---------------------------------------------------------------
 //--------------------------
 //Various divs and warning associated with messages for user
@@ -65,12 +103,12 @@ function writeToFile(hour, minute, timeOfDay, camType){
 //---------------------------------------------------------------
 //Purpose: Depending on action taken by user, alert them with message displayed in red
 function failAlert(message){
-	$(".WarningMessage").html(message).toggle();
-    $( ".WarningMessage" ).delay( 3000 ).fadeOut(200);   
+	$("#warningMessage").html(message).toggle();
+  $( "#warningMessage" ).delay( 3000 ).fadeOut(200);   
 }
 function successAlert(message){
-	$(".PopupPanel").html(message).toggle();
-  $( ".PopupPanel" ).delay( 3000 ).fadeOut(200);
+	$("#successMessage").html(message).toggle();
+  $( "#successMessage" ).delay( 3000 ).fadeOut(200);
 }
 function fatalError(message){
   $("#fatalErrorWarning").append(message);
@@ -95,4 +133,11 @@ function openReportTab(evt, textValue) {
     // Show the current tab, and add an "active" class to the link that opened the tab
     document.getElementById(textValue).style.display = "block";
     evt.currentTarget.className += " active";
+
+    hideDivs();
+}
+
+//Purpose: Depdeding on user action, div informational divs
+function hideDivs(){
+  $('#photoInto').hide();
 }

@@ -1,7 +1,7 @@
-SET= 1
-DATE= 3 Mar 2017
-TIME= 525
-PICNUM= 1
-INTERVAL= 5
-DELAY= 300
-CAMTYPE= integrated
+<set>1</set>
+<date>04/09/17</date>
+<time>25</time>
+<pictureNumber>1</pictureNumber>
+<interval>5</interval>
+<delay>35580</delay>
+<camType>SLR</camType>

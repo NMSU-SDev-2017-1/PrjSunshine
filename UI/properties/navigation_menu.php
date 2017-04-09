@@ -78,8 +78,8 @@
 <!-- End top header-->
 
 <!--For Fatal errors, append text values to div below-->
-<div class="col-md-12 fluid" id="fatalErrorWarning">
-  <div class="alert" style="display:none">
-      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-  </div>
-</div>
+<div id="fatalErrorWarning" class="alert alert-danger" style="display:none"></div>
+
+<!--Success and fail messages for user interations with options and processes-->
+<div id="warningMessage" class="alert alert-danger WarningMessage" style="display:none"></div>
+<div id="successMessage" class="alert alert-success WarningMessage" style="display:none"></div>

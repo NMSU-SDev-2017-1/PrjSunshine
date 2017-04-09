@@ -3,7 +3,7 @@
 	$userHour = $_POST['hour'];
 	$userMinute = $_POST['minute'];
 	$userTimeOfDay = $_POST['timeOfDay'];
-	$userCamType = $_POST['camType'];
+	$userCameraType = $_POST['camType'];
 
 	//Getting current time from server, pass time into file for Java program
 
@@ -33,9 +33,9 @@
 	$fileString .= "<pictureNumber>1</pictureNumber>\n";
 	$fileString .= "<interval>5</interval>\n";
 	$fileString .= "<delay>".$finalTime."</delay>\n";
-	$fileString .= "<camType>".$camType."</camType>\n";
+	$fileString .= "<camType>".$userCameraType."</camType>\n";
  	
- 	$writeFileLocation = "../../../IO/in/";
+ 	$writeFileLocation = "../../IO/in/";
  	$fileName = $writeFileLocation . 'commands.sun';
  	
  	$fileBoolean = file_put_contents ($fileName, $fileString);
