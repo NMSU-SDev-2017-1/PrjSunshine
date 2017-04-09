@@ -57,7 +57,21 @@ function writeToFile(hour, minute, timeOfDay, camType){
     failAlert('Writing to file has failed, please reload page and try again.');
   });
 }
-  
+//Purpose: Validate and process user information for a photo to be taken via zip code
+$(document).on("click","#zipCodePhoto",function(){
+  var zipCode = $('#zipCode').val();
+  if(zipCode.length == 0){
+    failAlert('To use this feature please enter a zip code.');
+    return;
+  } 
+  if(zipCode.length != 5){
+    failAlert('Zip code must be 5 digits long, please reenter');
+    return;
+  }
+
+  //At this point user input can be processed, begin by retriving nessesary zip code information
+
+});
 //---------------------------------------------------------------
 //--------------------------
 //Various divs and warning associated with messages for user
@@ -65,8 +79,8 @@ function writeToFile(hour, minute, timeOfDay, camType){
 //---------------------------------------------------------------
 //Purpose: Depending on action taken by user, alert them with message displayed in red
 function failAlert(message){
-	$(".WarningMessage").html(message).toggle();
-    $( ".WarningMessage" ).delay( 3000 ).fadeOut(200);   
+	$(".warningMessage").html(message).toggle();
+  $( ".warningMessage" ).delay( 3000 ).fadeOut(200);   
 }
 function successAlert(message){
 	$(".PopupPanel").html(message).toggle();

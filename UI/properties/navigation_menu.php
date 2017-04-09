@@ -83,3 +83,5 @@
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
   </div>
 </div>
+
+<div class="alert alert-danger warningMessage" style="display:none"></div>
