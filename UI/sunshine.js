@@ -59,7 +59,6 @@ function writeToFile(hour, minute, timeOfDay, camType){
     }
   })
   .done(function(json){
-    fatalError('Done???');
     successAlert('Successfully writen task to file.');
   })
   .fail(function(json) {
@@ -88,6 +87,7 @@ function submitZipCodePhoto(){
   })
   .done(function(json){
     var fileDirections = "Photo directions: ";
+    console.log(json);
     $('#photoInto').empty();
     $('#photoInto').append(fileDirections);
     $('#photoInto').show();
