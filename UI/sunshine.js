@@ -52,6 +52,7 @@ function writeToFile(hour, minute, timeOfDay, camType){
   })
   .done(function(json){
     fatalError('Done???');
+    successAlert('Successfully writen task to file.');
   })
   .fail(function(json) {
     failAlert('Writing to file has failed, please reload page and try again.');
@@ -68,9 +69,21 @@ $(document).on("click","#zipCodePhoto",function(){
     failAlert('Zip code must be 5 digits long, please reenter');
     return;
   }
-
   //At this point user input can be processed, begin by retriving nessesary zip code information
-
+  $.ajax({
+    type: "POST",
+    url: "AJAX_calls/writeToFileZipCode.php",
+    dataType: "json",
+    data: {
+      zipCode: zipCode
+    }
+  })
+  .done(function(json){
+    successAlert('Successfully writen task to file.');
+  })
+  .fail(function(json) {
+    failAlert('Writing to file has failed, please reload page and try again.');
+  });
 });
 //---------------------------------------------------------------
 //--------------------------
@@ -79,12 +92,12 @@ $(document).on("click","#zipCodePhoto",function(){
 //---------------------------------------------------------------
 //Purpose: Depending on action taken by user, alert them with message displayed in red
 function failAlert(message){
-	$(".warningMessage").html(message).toggle();
-  $( ".warningMessage" ).delay( 3000 ).fadeOut(200);   
+	$("#warningMessage").html(message).toggle();
+  $( "#warningMessage" ).delay( 3000 ).fadeOut(200);   
 }
 function successAlert(message){
-	$(".PopupPanel").html(message).toggle();
-  $( ".PopupPanel" ).delay( 3000 ).fadeOut(200);
+	$("#successMessage").html(message).toggle();
+  $( "#successMessage" ).delay( 3000 ).fadeOut(200);
 }
 function fatalError(message){
   $("#fatalErrorWarning").append(message);
