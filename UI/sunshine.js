@@ -87,13 +87,13 @@ function submitZipCodePhoto(){
   })
   .done(function(json){
     var fileDirections = "Photo directions: ";
-    console.log(json);
-    $('#photoInto').empty();
-    $('#photoInto').append(fileDirections);
+    //RETURN HERE
+    //Once photo directions are caluculated, append directions to inform user
+    $('#photoInto').html(fileDirections);
     $('#photoInto').show();
   })
   .fail(function(json){
-    failAlert('Writing to file has failed, please reload page and try again.');
+    failAlert('Find Zip Code '+zipCode+' has failed, please ensure this Zip Code is correct.');
   });
 }
 //---------------------------------------------------------------
