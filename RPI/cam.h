@@ -1,7 +1,7 @@
 /*****************************************************************************
 * RPI Camera                                                                 *
 * Lennyn Daza                                                                *
-* 15 March 2017                                                              *
+* 10 April 2017                                                              *
 *****************************************************************************/
 
 #pragma once
@@ -59,8 +59,20 @@ private:
 	//private variables for camera data
 	std::string word = "";
 	std::string data = "";
+	std::string camType = "";
 
 	int value = 0;
+	unsigned long long int timestp = 0;
+
+	//String position variables
+	std::size_t pos1 = 0;
+	std::size_t pos2 = 0;
+	std::size_t pos3 = 0;
+	std::size_t pos4 = 0;
+	std::size_t pos5 = 0;
+	std::size_t pos6 = 0;
+	std::size_t pos7 = 0;
+	std::size_t pos8 = 0;
 
 	//Variables for timing loop
 	int iter = 0;
@@ -68,7 +80,8 @@ private:
 
 	//private variables for system call commands
 	std::string syscall = "";
-	std::string cmd = "";
+	std::string cmdIntegrated = "";
+	std::string cmdSLR = "";
 	std::string path = "";
 	std::string date = "";
 	std::string ext = "";

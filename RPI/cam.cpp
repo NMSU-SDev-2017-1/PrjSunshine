@@ -1,7 +1,7 @@
 /*****************************************************************************
 * RPI Camera                                                                 *
 * Lennyn Daza                                                                *
-* 15 March 2017                                                              *
+* 10 April 2017                                                              *
 *****************************************************************************/
 
 #include "cam.h"
@@ -55,23 +55,52 @@ void Cam::readIn(int n)
 	//Read word by word
 	while (file >> word)
 	{
-		//Find tag (Just three tags)
-		if (word == "DATE=")
+		//Find file tags
+		if (word.substr(0, 5) == "<set>")
 		{
-	
+			pos1 = word.find("</set>");
+			std::cout << "SET = " << word.substr(5, pos1 - 5) << std::endl;//(Debuging)
+			//setNum = word.substr(5, pos1 - 5);
 		}
-		if (word == "TIME=")
+		if (word.substr(0, 6) == "<date>")
 		{
-
+			pos2 = word.find("</date>");
+			std::cout << "DATE = " << word.substr(6, pos2 - 6) << std::endl;//(Debuging)
+			//date = word.substr(6, pos2 - 6);
 		}
-		if (word == "DELAY=")
+		if (word.substr(0, 6) == "<time>")
 		{
-			//Get next word and load into data
-			//in file contains delay value
-			file >> data;
+			pos3 = word.find("</time>");
+			std::cout << "TIME = " << word.substr(6, pos3 - 6) << std::endl;//(Debuging)
+			//time = word.substr(6, pos3 - 6);
+		}
+		if (word.substr(0, 15) == "<pictureNumber>")
+		{
+			pos4 = word.find("</pictureNumber>");
+			std::cout << "PICTURE NUMBER = " << word.substr(15, pos4 - 15) << std::endl;//(Debuging)
+			//pictureNumber = word.substr(15, pos4 - 15);
+		}
+		if (word.substr(0, 10) == "<interval>")
+		{
+			pos5 = word.find("</interval>");
+			std::cout << "INTERVAL = " << word.substr(10, pos5 - 10) << std::endl;//(Debuging)
+			//interval = word.substr(10, pos5 - 10);
+		}
+		if (word.substr(0, 7) == "<delay>")
+		{
+			pos6 = word.find("</delay>");
+			std::cout << "DELAY = " << word.substr(7, pos6 - 7) << std::endl;//(Debuging)
 
 			//Convert to integer
-			value = atoi(data.c_str());
+			value = atoi(word.substr(7, pos6 - 7).c_str());
+		}
+		if (word.substr(0, 9) == "<camType>")
+		{
+			pos1 = word.find("</camType>");
+			std::cout << "TYPE = " << word.substr(9, pos1 - 9) << std::endl;//(Debuging)
+
+			camType = word.substr(9, pos1 - 9);
+
 		}
 
 		word.clear();
@@ -91,8 +120,7 @@ void Cam::takePic(int n)
 	//Command format
 	cmdIntegrated = ("sudo raspistill -o ");
 	cmdSLR = ("gphoto2 --capture-image-and-download --filename ");
-	//path = ("/home/pi/ProjectSunshine/Pictures/");
-	path = ("/var/www/html/RPI_Box/ProjectSunshine/IO/out");
+	path = ("/var/www/html/RPI_Box/ProjectSunshine/IO/out/");
 	date = ("02032017");
 	ext = (".jpg");
 	end = (" -n");
@@ -103,16 +131,20 @@ void Cam::takePic(int n)
 
 	//Build string
 	//Checks type of camera and make appropriate call
-	if(camType == "SLR")
-		syscall = cmdSLR + path + date + ext;
-	else
+	if (camType == "RCAM")
+	{
 		syscall = cmdIntegrated + path + date + ext + end;
+	}
+	if (camType == "SLR")
+	{
+		syscall = cmdSLR + path + date + ext;
+	}
 
-	std::cout << syscall << '\n';//(Debuging)
+	std::cout << syscall << '\n';//(Debuging) Make sure is the right command
 
 	//Call command
 	system(syscall.c_str());
-	//Sleep(3000);//Camera processing has about 3 seconds delay to take a picture
+	//Camera processing has about 3 seconds delay to take a picture
 
 	std::cout << "Picture was taken and stored" << std::endl;//(Debuging)
 

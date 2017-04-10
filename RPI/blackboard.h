@@ -23,9 +23,9 @@ int iterator = 0;
 struct pictasks
 {
 	std::string date;
+	std::string cameraType;
 	int time;
 	int delay;
-	std::string camType;
 	bool done;
 
 }task1, task2;
