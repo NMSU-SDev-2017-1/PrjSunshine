@@ -112,7 +112,8 @@ function undoInstall() {
     if [ $VERBOSE = "1" ]; then
         echo "Resetting interfaces"
     fi
-    cp /opt/sunshine/backups/dhcpd.conf.backup /etc/dhcp/dhcpd.conf
+    cp /opt/sunshine/backups/dhcpd.conf.backup /etc/dhcp/dhcpd.co = "1" ]; then
+        sed -i nf
 
     if [ $VERBOSE = "1" ]; then
         echo "Resetting /etc/dhcp/dhcpd.conf"
@@ -195,11 +196,15 @@ function copyfiles() {
     cd ..
 
     #rewrites values based on previous actions
+<<<<<<< HEAD
+    if [ $backupdone = "1" ]; then
+        sed -i '/backupdone=0/c\backupdone=1' /var/www/html/INSTALL/config.sun
     if [ $BACKUPDONE = "1" ]; then
         sed -i '/backupdone=0/c\backupdone=1' /INSTALL/config.sun
     fi
     if [ $INSTALLED = "1" ]; then
         sed -i '/installed=0/c\installed=1' /INSTALL/config.sun
+>>>>>>> 9eacb23f80b014148fa2a427ab5e61fb43619436
     fi
 
     return
@@ -288,7 +293,10 @@ else
         echo "Editing /etc/dhcp/dhcpd.conf"
     fi
     if grep -Fxq "DHCP ADD" /etc/dhcp/dhcpd.conf
-	then
+<<<<<<< HEAD
+    then
+=======
+>>>>>>> 9eacb23f80b014148fa2a427ab5e61fb43619436
         echo "done"
     else
         sed -i '/option domain-name "example.org";/c\#option domain-name "example.org";' /etc/dhcp/dhcpd.conf
@@ -311,7 +319,10 @@ else
         echo "Editing /etc/hostapd/hostapd.conf"
     fi
     if grep -Fxq "#HOSTAPD ADD" /etc/hostapd/hostapd.conf
-	then
+<<<<<<< HEAD
+    then
+=======
+>>>>>>> 9eacb23f80b014148fa2a427ab5e61fb43619436
         echo "done"
     else
     echo "#HOSTAPD ADD">>/etc/hostapd/hostapd.conf
