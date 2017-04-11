@@ -50,7 +50,7 @@ void Cam::readIn(int n)
 
 	//file.open("Input/commands.sun");
 	// UI will save file to /var/www/html/"RPI Box"/ProjectSunshine/Input/commands.sun
-	file.open("/var/www/html/RPI_Box/ProjectSunshine/IO/in/commands.sun");
+	file.open("/var/www/html/IO/in/commands.sun");
 
 	//Read word by word
 	while (file >> word)
@@ -120,7 +120,7 @@ void Cam::takePic(int n)
 	//Command format
 	cmdIntegrated = ("sudo raspistill -o ");
 	cmdSLR = ("gphoto2 --capture-image-and-download --filename ");
-	path = ("/var/www/html/RPI_Box/ProjectSunshine/IO/out/");
+	path = ("/var/www/html/IO/out/");
 	date = ("02032017");
 	ext = (".jpg");
 	end = (" -n");

@@ -192,7 +192,9 @@ function copyfiles() {
     cd RPI
     g++ cam.cpp -std=c++11 -o cam
     g++ blackboard.cpp -std=c++11 -o blackboard
-    cd ..
+    cd /
+    find /var/www/html \( -type d -exec chmod u+rwx,g+rwx,o+rwx {} \; -o -type f -exec chmod u+rwx,g+rwx,o+rwx {} \; \)
+    cd /var/www/html
 
     #rewrites values based on previous actions
     if [ $BACKUPDONE = "1" ]; then
