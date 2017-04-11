@@ -87,10 +87,10 @@ function submitZipCodePhoto(){
   })
   .done(function(json){
     var fileDirections = "Photo directions: <br>";
-    if(json != 'NULL'){
-      fileDirections += json;
-    }else{
+    if(json == 'NULL'){
       fileDirections += "Zip code "+zipCode+" could not be found, please ensure this zip code is correct";
+    }else{
+      fileDirections += json;
     }
     
     //Append information to informational div
