@@ -196,10 +196,10 @@ function copyfiles() {
 
     #rewrites values based on previous actions
     if [ $backupdone = "1" ]; then
-        sed -i '/backupdone=0/c\backupdone=1' /INSTALL/config.sun
+        sed -i '/backupdone=0/c\backupdone=1' /var/www/html/INSTALL/config.sun
     fi
     if [ $installed = "1" ]; then
-        sed -i '/installed=0/c\installed=1' /INSTALL/config.sun
+        sed -i '/installed=0/c\installed=1' /var/www/html/INSTALL/config.sun
     fi
 
     return
@@ -287,7 +287,8 @@ else
     if [ $VERBOSE = "1" ]; then
         echo "Editing /etc/dhcp/dhcpd.conf"
     fi
-    if grep -Fxq "DHCP ADD" then
+    if grep -Fxq "DHCP ADD" /etc/dhcp/dhcpd.conf
+    then
         echo "done"
     else
         sed -i '/option domain-name "example.org";/c\#option domain-name "example.org";' /etc/dhcp/dhcpd.conf
@@ -309,7 +310,8 @@ else
     if [ $VERBOSE = "1" ]; then
         echo "Editing /etc/hostapd/hostapd.conf"
     fi
-    if grep -Fxq "#HOSTAPD ADD" then
+    if grep -Fxq "#HOSTAPD ADD" /etc/hostapd/hostapd.conf
+    then
         echo "done"
     else
     echo "#HOSTAPD ADD">>/etc/hostapd/hostapd.conf
