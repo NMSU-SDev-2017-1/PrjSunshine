@@ -112,7 +112,8 @@ function undoInstall() {
     if [ $VERBOSE = "1" ]; then
         echo "Resetting interfaces"
     fi
-    cp /opt/sunshine/backups/dhcpd.conf.backup /etc/dhcp/dhcpd.conf
+    cp /opt/sunshine/backups/dhcpd.conf.backup /etc/dhcp/dhcpd.co = "1" ]; then
+        sed -i nf
 
     if [ $VERBOSE = "1" ]; then
         echo "Resetting /etc/dhcp/dhcpd.conf"
@@ -179,11 +180,11 @@ function copyfiles() {
     fi
     if grep -Fxq "backupdone=1" /var/www/html/INSTALL/config.sun
     then
-        backupdone=1
+        BACKUPDONE=1
     fi
     if grep -Fxq "installed=1" /var/www/html/INSTALL/config.sun
     then
-        installed=1
+        INSTALLED=1
     fi
     rsync -r $fileloc/ /var/www/html
     cd /var/www/html
@@ -195,11 +196,11 @@ function copyfiles() {
     cd ..
 
     #rewrites values based on previous actions
-    if [ $backupdone = "1" ]; then
-        sed -i '/backupdone=0/c\backupdone=1' /var/www/html/INSTALL/config.sun
+    if [ $BACKUPDONE = "1" ]; then
+        sed -i '/backupdone=0/c\backupdone=1' /INSTALL/config.sun
     fi
-    if [ $installed = "1" ]; then
-        sed -i '/installed=0/c\installed=1' /var/www/html/INSTALL/config.sun
+    if [ $INSTALLED = "1" ]; then
+        sed -i '/installed=0/c\installed=1' /INSTALL/config.sun
     fi
 
     return
@@ -288,7 +289,6 @@ else
         echo "Editing /etc/dhcp/dhcpd.conf"
     fi
     if grep -Fxq "DHCP ADD" /etc/dhcp/dhcpd.conf
-    then
         echo "done"
     else
         sed -i '/option domain-name "example.org";/c\#option domain-name "example.org";' /etc/dhcp/dhcpd.conf
@@ -311,7 +311,6 @@ else
         echo "Editing /etc/hostapd/hostapd.conf"
     fi
     if grep -Fxq "#HOSTAPD ADD" /etc/hostapd/hostapd.conf
-    then
         echo "done"
     else
     echo "#HOSTAPD ADD">>/etc/hostapd/hostapd.conf
