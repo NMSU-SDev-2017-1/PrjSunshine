@@ -86,9 +86,14 @@ function submitZipCodePhoto(){
     }
   })
   .done(function(json){
-    var fileDirections = "Photo directions: ";
-    //RETURN HERE
-    //Once photo directions are caluculated, append directions to inform user
+    var fileDirections = "Photo directions: <br>";
+    if(json != 'NULL'){
+      fileDirections += json;
+    }else{
+      fileDirections += "Zip code "+zipCode+" could not be found, please ensure this zip code is correct";
+    }
+    
+    //Append information to informational div
     $('#photoInto').html(fileDirections);
     $('#photoInto').show();
   })

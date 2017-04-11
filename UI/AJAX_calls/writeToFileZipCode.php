@@ -4,12 +4,9 @@ $zipCode = $_POST['zipCode'];
 //Get zip code values from saved file
 $zipCodeInfo = json_decode(file_get_contents("sunShineData.json"), true);
 
-//Get lat and lng specific to posted zip code through associative php array
-//Note: Do not remove double quotes from zipCode, this allows us to use the associative array without php throwing errors
-$zipCodeValues = $zipCodeInfo["$zipCode"];
-
-if(isset($zipCodeInfo["$zipCode"]) == true){
-	echo json_encode($zipCodeValues);
+if(isset($zipCodeInfo["{$zipCode}"]) == true){
+	$zipInfo = $zipCodeInfo["{$zipCode}"];
+	echo json_encode('Sun will raise at 6:56 AM');
 }else{
 	echo json_encode('NULL');
 }
