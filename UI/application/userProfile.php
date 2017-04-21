@@ -1,23 +1,32 @@
-<!--users profile set up-->
-	<div class="col-md-12 fluid">
-		<div class="panel">
-			<div class="panel-body">
-				<label><b><i>User Name</i></b></label>
-					<div>
-						<img src="properties\images\headerSunRaise.jpg" alt="profile" class="pull-left" style=" width:150px; height:120px; border-radius: 100% ">
-					</div>
-				
-			</div><!--End panel body-->
-		</div><!--End panel-->
-	</div>
+<!--Begin user profile loading via php-->
+<?php
+//CHANGE ME
+$userName = 'Zachary Toups';
+//CHANGE ME
 
-	<div class="col-md-12 fluid">
-		<div class="panel">
-			<div class="panel-body">
-					<div>
-						<button id="usernameprofile" style="width:304px;height:50px;" class="btn btn-primary form-control pull-left">Edit</button>
-					</div>
-				
-			</div><!--End panel body-->
-		</div><!--End panel-->
+if($userName == 'none'){
+
+}else{
+	$userName = "Hello, ".$userName."!";
+}
+
+?>
+<div class="container">
+	<!--User profile-->
+	<div class="col-md-3 img-overlay parent">
+		<img class="image2" src="properties\images\profilePicture.jpg" align="middle">
+	</div><!--End picture div-->
+	<!--User statistics/hello-->
+	<div class="col-md-3">
+		<h3><?php  echo $userName; ?></h3>
+		<p>Project Sunshine Statistics</p>
+		<ul>
+			<li>Number of photos take: </li>
+			<li>Number of Sunrise photos: </li>
+			<li>Number of Sunset photos: </li>
+			<li>Average time of day for each photo: </li>
+			<li>Average number of Instagram likes: </li>
+			<li>Most popular photo: </li>
+		</ul>
 	</div>
+</div>
