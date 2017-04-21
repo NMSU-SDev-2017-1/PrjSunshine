@@ -1,0 +1,12 @@
+{
+   "userName": "none",
+    "userStatistic" : {
+    	"statisticBool": "false",
+   		"numberPhotos": 0,
+      	"numberOfSunrise": 0,
+      	"numberOfSunset": 0,
+      	"averagePhoto": 0,
+      	"averageNumberOfLikes": 0,
+      	"mostPopularPhoto": "none"
+    }
+}
