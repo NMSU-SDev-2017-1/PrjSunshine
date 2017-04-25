@@ -2,9 +2,10 @@
 <html lang="en-us">
 <head>
 <title>Go to pages</title>
-<link rel="stylesheet" type="text/css"
-href="/UI/properties/third_party_plugins/joyride/dist/solo.joyride.min.css">
+<link rel="stylesheet" type="text/css" href="/UI/properties/third_party_plugins/joyride/dist/solo.joyride.min.css" >
 
+<script src="/UI/properties/third_party_plugins/jQuery/jquery-3.1.1.min.js" >
+</script>
 <script src="/UI/properties/third_party_plugins/joyride/dist/solo.joyride.min.js">
 </script>
 
@@ -19,19 +20,17 @@ href="/UI/properties/third_party_plugins/joyride/dist/solo.joyride.min.css">
 <h1> <a href="/UI/sunshine.php"> php page</a> </h1>
 <h1 id="testing"> <a href="/IO/out">photos</a> </h1>
 
-<ol id="joyridecontent" >
+<ol id="joy" >
     <li data-id="testing"> Go here for photos </li>
     <li> Tip Content</li>
-    <li data-class="parent-element-class"
-    data-options="tipLocation:bottom;tipAnimation:fade"
-    data-button="Second Button"> Content</li>
+    <li data-class="parent-element-class" data-options="tipLocation:bottom;tipAnimation:fade" data-button="Second Button"> Content</li>
     <li data-id="parentElementID" class="custom-class">Content...</li>
 </ol>
 
 <script>
     $(window).load(function() {
-        $("#joyridecontent").joyride( {
-            /*none*/
+        $("#joy").joyride( {
+            'cookieMonster': false
         });
     });
     </script>
