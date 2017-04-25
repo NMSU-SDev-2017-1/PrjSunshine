@@ -194,16 +194,16 @@ function copyfiles() {
     g++ cam.cpp -std=c++11 -o cam
     g++ blackboard.cpp -std=c++11 -o blackboard
     cd /
-    find /var/www/html \( -type d -exec chmod u+rwx,g+rwx,o+rwx {} \; -o -type f -exec chmod u+rwx,g+rwx,o+rwx {} \; \)
+    chmod -R u+rwx,g+rwx,o+rwx /var/www/html
     cd /var/www/html
 
     #rewrites values based on previous actions
-    if [ $BACKUPDONE = "1" ]; then
+    #if [ $BACKUPDONE = "1" ]; then
         sed -i '/backupdone=0/c\backupdone=1' /INSTALL/config.sun
-    fi
-    if [ $INSTALLED = "1" ]; then
+    #fi
+    #if [ $INSTALLED = "1" ]; then
         sed -i '/installed=0/c\installed=1' /INSTALL/config.sun
-    fi
+    #fi
 
     return
 }
