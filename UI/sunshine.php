@@ -2,7 +2,7 @@
   //When processing froms from PHP to PHP page we can store error and success messages into session
   //to alert the user of the status of a completed/failed action
   session_start();
-  error_log(print_r($_SESSION,true));
+  
 	require_once('properties/navigation_menu.php');
   if(isset($_SESSION['error']) == true){
     echo '

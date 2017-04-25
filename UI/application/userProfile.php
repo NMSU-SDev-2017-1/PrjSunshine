@@ -59,6 +59,11 @@ if($tutorial == true){
 		<div class="col-md-9">
 			<?php  echo $statString?>
 		</div>
+		<?php
+			if($tutorial == false){
+				require_once('userPhoto.php');
+			}
+		?>
 	</div>
 	</div>
 </div>
