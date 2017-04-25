@@ -1,5 +1,26 @@
 <?php
+  //When processing froms from PHP to PHP page we can store error and success messages into session
+  //to alert the user of the status of a completed/failed action
+  session_start();
+  error_log(print_r($_SESSION,true));
 	require_once('properties/navigation_menu.php');
+  if(isset($_SESSION['error']) == true){
+    echo '
+    <div class="alert alert-danger">
+      <strong>Error: </strong> '.$_SESSION['error'].'
+    </div>
+    ';
+  }
+  else if(isset($_SESSION['success']) == true){
+    echo '
+    <div class="alert alert-success">
+      <strong>Success!</strong> Your profile has been updated
+    </div>
+    ';
+  }
+  //If are set, remove these values from session
+  unset($_SESSION['success']);
+  unset($_SESSION['error']);
 ?>
 <!--Page specific JavaScript-->
 <script src="sunshine.js?<?php echo time(); ?>" type="text/javascript"></script>

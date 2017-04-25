@@ -71,7 +71,7 @@ if($tutorial == true){
         <h4 class="modal-title">Edit Profile information</h4>
       </div>
       <div class="modal-body">
-      	<form action="processProfile.php" method="post">
+      	<form action="AJAX_calls/processProfile.php" method="post" id="userEditProfile" enctype="multipart/form-data">
     	<label>First name:</label>
     	<input class="form-control" type="text" name="firstName">
     	<br>
@@ -79,15 +79,14 @@ if($tutorial == true){
     	<input class="form-control" type="text" name="lastName">
     	<br>
     	<label>Profile picture:</label>
-    	<input type="file" name="fileToUpload">
+    	<input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
       	<br>
       	</form>
       </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-info" id="submitProfileInfo">Submit</button>
+      	<button type="submit" form="userEditProfile" class="btn btn-info" id="submitProfileInfo">Submit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-
   </div>
 </div>
