@@ -11,19 +11,21 @@ if($userProfileData['fileStatus'] == 'default'){
 
 if($tutorial == true){
 	$userName = "Hello!";
+	$photoPath = "properties\images\defaultProfilePicture.jpg";
 	$statString = "<h2>Getting started</h2>";
 	$statString .= "<p>When you begin using project sunshine, you can keep track of some of your photo statistics here.";
 	$statString .= "You can get started on creating your profile by selecting the blue edit butto towards the top of the page.";
 	$statString .= "</p>";
 }else{
 	//User has defined values for profile, do not show tutorial, display profile settings
-	$userName = "Hello, ".$userProfile['userName']."!";
-	$numberPhotos = $userProfile['userStatistic']['numberPhotos'];
-	$numberOfSunrise = $userProfile['userStatistic']['numberOfSunrise'];
-	$numberOfSunset = $userProfile['userStatistic']['numberOfSunset'];
-	$averagePhoto = $userProfile['userStatistic']['averagePhoto'];
-	$averageNumberOfLikes = $userProfile['userStatistic']['averageNumberOfLikes'];
-	$mostPopularPhoto = $userProfile['userStatistic']['mostPopularPhoto'];
+	$userName = "Hello, ".$userProfileData['userName']."!";
+	$photoPath = "AJAX_calls/".$userProfileData['fileStatus']; 
+	$numberPhotos = $userProfileData['userStatistic']['numberPhotos'];
+	$numberOfSunrise = $userProfileData['userStatistic']['numberOfSunrise'];
+	$numberOfSunset = $userProfileData['userStatistic']['numberOfSunset'];
+	$averagePhoto = $userProfileData['userStatistic']['averagePhoto'];
+	$averageNumberOfLikes = $userProfileData['userStatistic']['averageNumberOfLikes'];
+	$mostPopularPhoto = $userProfileData['userStatistic']['mostPopularPhoto'];
 	
 	//User profile is set, grab values
 	$statString ="
@@ -51,7 +53,7 @@ if($tutorial == true){
 	<div class="panel-body">
 		<!--User profile-->
 		<div class="col-md-3">
-			<img class="image2" src="properties\images\defaultProfilePicture.jpg" align="middle">
+			<img class="image2" src="<?php echo $photoPath?>" align="middle">
 		</div><!--End picture div-->
 		<!--User statistics/hello-->
 		<div class="col-md-9">

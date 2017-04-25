@@ -57,9 +57,23 @@ if(strlen($error) == 0){
 	$_SESSION['success'] = $success;
 }else{
 	$_SESSION['error'] = $error;
-	error_log(print_r($_SESSION,true));
-	session_commit();
 }
+$jsonUser = array(
+	"fileStatus" => $_FILES["fileToUpload"]["name"],
+	"userName" => $_POST['firstName'] . ' ' .$_POST['lastName'],
+	"userStatistic" => array(
+		"statisticBool" => "false",
+		"numberPhotos" => 0,
+		"numberOfSunrise" => 0,
+		"numberOfSunset" => 0,
+		"averagePhoto" => 0,
+		"averageNumberOfLikes" => 0,
+		"mostPopularPhoto" => "none"
+	));
+
+//At this point file has been saved and can store name values and photo name into user json file
+$fileBoolean = file_put_contents ('userProfile.json', json_encode($jsonUser));
+
 //Send user back to base php page
 header("location:../sunshine.php"); 
 ?>
