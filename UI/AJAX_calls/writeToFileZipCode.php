@@ -15,6 +15,6 @@ if(is_readable($jsonFileName) == true){
 }
 //Throw fatal error, cannot read file
 else{
-	echo json_encode('Cannot read file sunShineData.json');
+	echo json_encode('Cannot read file' . $jsonFileName);
 }
 ?>
