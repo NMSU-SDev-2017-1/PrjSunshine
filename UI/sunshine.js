@@ -32,11 +32,12 @@ $(document).ready(function(){
         content: "Go here to take a picture"
     }
     ]});
-    }) //end
-  // Initialize the tour
-  tour.init();
-  // Start the tour
-  tour.start();
+
+    // Initialize the tour
+    tour.init();
+    // Start the tour
+    tour.start();
+  });
 });//End doc on ready
 
 function submitTimePhoto(){
