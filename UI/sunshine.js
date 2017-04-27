@@ -17,7 +17,8 @@ $(document).ready(function(){
     submitZipCodePhoto();
   });
 
-  // Instance the tour
+  //Purpose: Tutorial button triggers bootstrap tour event
+  /*$( "#tutorial" ).click(function(){
     var tour = new Tour({
     steps: [
     {
@@ -36,7 +37,7 @@ $(document).ready(function(){
     tour.init();
     // Start the tour
     tour.start();
-
+  });*/
 });//End doc on ready
 
 function submitTimePhoto(){
@@ -163,7 +164,7 @@ function openReportTab(evt, textValue) {
     hideDivs();
 }
 
-//Purpose: Depdeding on user action, div informational divs
+//Purpose: Depdeding on user action, hide photo informational div. This div shows zip code and camera postioning information
 function hideDivs(){
   $('#photoInto').hide();
 }

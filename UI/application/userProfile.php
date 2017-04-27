@@ -45,9 +45,8 @@ if($tutorial == true){
 	<div class="panel panel-gettingStarted">
 		<div class="panel-heading">
 			<div class="panel-title text-left"><?php  echo $userName; ?>
+			<button class="btn btn-info btn-sm pull-right" id="tutorial">Tutorial</button>
 			<button class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Edit Profile</button>
-
-
 			</div>
 		</div>
 	<div class="panel-body">
