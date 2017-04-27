@@ -22,12 +22,6 @@
   unset($_SESSION['success']);
   unset($_SESSION['error']);
 ?>
-<!-- Include dependencies for bootstrap-tour -->
-<link href="/properties/third_party_plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/properties/third_party_plugins/bootstrap/css/bootstrap-tour.min.css" rel="stylesheet" />
-<script src="/properties/third_party_plugins/jQuery/jquery-3.1.1.min.js" ></script>
-<script src="/properties/third_party_plugins/bootstrap/js/bootstrap.min.js" ></script>
-<script src="/properties/third_party_plugins/bootstrap/js/bootstrap-tour.min.js" ></script>
 
 <!--Page specific JavaScript-->
 <script src="sunshine.js?<?php echo time(); ?>" type="text/javascript"></script>
