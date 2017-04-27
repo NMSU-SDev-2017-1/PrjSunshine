@@ -22,12 +22,12 @@ $(document).ready(function(){
     var tour = new Tour({
     steps: [
     {
-        element: "#menu1Tab",
+        element: "#menu1",
         title: "Step 1",
         content: "Go here to change your user profile"
     },
     {
-        element: "#menu2Tab",
+        element: "#menu2",
         title: "Step 2",
         content: "Go here to take a picture"
     }
