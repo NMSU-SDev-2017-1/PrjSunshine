@@ -18,7 +18,6 @@ $(document).ready(function(){
   });
 
   // Instance the tour
-  $(function() {
     var tour = new Tour({
     steps: [
     {
@@ -37,7 +36,7 @@ $(document).ready(function(){
     tour.init();
     // Start the tour
     tour.start();
-  });
+
 });//End doc on ready
 
 function submitTimePhoto(){
