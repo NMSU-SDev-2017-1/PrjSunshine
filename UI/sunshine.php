@@ -31,6 +31,28 @@
 <script src="/properties/third_party_plugins/jQuery/jquery-3.1.1.min.js" ></script>
 <script src="/properties/third_party_plugins/bootstrap/js/bootstrap.min.js" ></script>
 <script src="/properties/third_party_plugins/bootstrap/js/bootstrap-tour.min.js" ></script>
+<script type="text/javascript">
+   // Instance the tour
+   var tour = new Tour({
+   steps: [
+   {
+     element: "#menu1",
+     title: "Step 1",
+     content: "Go here to change your user profile"
+   },
+   {
+     element: "#menu2",
+     title: "Step 2",
+     content: "Go here to take a picture"
+   }
+   ]});
+
+   // Initialize the tour
+   tour.init();
+
+   // Start the tour
+   tour.start();
+</script>
 
 <!--PAGE CONTENT BEGINS HERE-->
 <div class="container">
@@ -64,26 +86,4 @@
        	?>
     </div>
   </div>
-  <script>
-     // Instance the tour
-     var tour = new Tour({
-     steps: [
-     {
-       element: "#menu1",
-       title: "Step 1",
-       content: "Go here to change your user profile"
-     },
-     {
-       element: "#menu2",
-       title: "Step 2",
-       content: "Go here to take a picture"
-     }
-     ]});
-
-     // Initialize the tour
-     tour.init();
-
-     // Start the tour
-     tour.start();
-  </script>
 </div>
