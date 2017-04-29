@@ -1,11 +1,11 @@
 $(document).ready(function(){
   $( ".tablinks" ).click(function(){
         var tabText = $(this).text();
-        
+
         hideAllDataTables();
         openReportTab(event, tabText);
    });
-  
+
   //Always have academic as default open tab
   document.getElementById("menu2Tab").click();
 
@@ -16,6 +16,28 @@ $(document).ready(function(){
   $( "#zipCodePhoto" ).click(function(){
     submitZipCodePhoto();
   });
+
+  //Purpose: Tutorial button triggers bootstrap tour event
+  /*$( "#tutorial" ).click(function(){
+    var tour = new Tour({
+    steps: [
+    {
+        element: "#menu1",
+        title: "Step 1",
+        content: "Go here to change your user profile"
+    },
+    {
+        element: "#menu2",
+        title: "Step 2",
+        content: "Go here to take a picture"
+    }
+    ]});
+
+    // Initialize the tour
+    tour.init();
+    // Start the tour
+    tour.start();
+  });*/
 });//End doc on ready
 
 function submitTimePhoto(){
@@ -24,7 +46,7 @@ function submitTimePhoto(){
   var minute = $('#minute').val();
   var timeOfDay = $('#12Hour').val();
   var camType = $('#camera').val();
-  
+
   //Validate user responce
   if(hour == 'none'){
     failAlert('Please select an hour to take the photo');
@@ -71,7 +93,7 @@ function submitZipCodePhoto(){
   if(zipCode.length == 0){
     failAlert('To use this feature please enter a zip code.');
     return;
-  } 
+  }
   if(zipCode.length != 5){
     failAlert('Zip code must be 5 digits long, please reenter');
     return;
@@ -92,7 +114,7 @@ function submitZipCodePhoto(){
     }else{
       fileDirections += json;
     }
-    
+
     //Append information to informational div
     $('#photoInto').html(fileDirections);
     $('#photoInto').show();
@@ -109,7 +131,7 @@ function submitZipCodePhoto(){
 //Purpose: Depending on action taken by user, alert them with message displayed in red
 function failAlert(message){
 	$("#warningMessage").html(message).toggle();
-  $( "#warningMessage" ).delay( 3000 ).fadeOut(200);   
+  $( "#warningMessage" ).delay( 3000 ).fadeOut(200);
 }
 function successAlert(message){
 	$("#successMessage").html(message).toggle();
@@ -142,7 +164,7 @@ function openReportTab(evt, textValue) {
     hideDivs();
 }
 
-//Purpose: Depdeding on user action, div informational divs
+//Purpose: Depdeding on user action, hide photo informational div. This div shows zip code and camera postioning information
 function hideDivs(){
   $('#photoInto').hide();
 }

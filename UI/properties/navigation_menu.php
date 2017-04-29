@@ -1,25 +1,29 @@
-<!-- 
-  Files included in this page should be stlye sheets common across all pages 
-  i.e Bootstrap and jQuery 
+<!--
+  Files included in this page should be stlye sheets common across all pages
+  i.e Bootstrap and jQuery
 -->
 <head>
   <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
 	<title>Project Sunshine</title>
   <!-- Include jQuery -->
   <script src="properties/third_party_plugins/jQuery/jquery-3.1.1.min.js"></script>
 
   <!-- Bootstrap (Note: Bootstrap required jQuery, include after jQuery-->
   <link href="properties/third_party_plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <script src="properties/third_party_plugins/bootstrap/js/bootstrap.js"></script> 
+  <script src="properties/third_party_plugins/bootstrap/js/bootstrap.js"></script>
+
+  <!-- Include dependencies for bootstrap-tour -->
+  <link href="properties/third_party_plugins/bootstrap/css/bootstrap-tour.min.css" rel="stylesheet" />
+  <script src="properties/third_party_plugins/bootstrap/js/bootstrap-tour.min.js" ></script>
 
   <!--Custom css-->
   <link rel="stylesheet" href="properties/template/custom.css">
 </head>
 <!--Navigation menu-->
-<!-- 
+<!--
   Note: As this project grows, we can uncomment navigation bars as needed
  -->
 <nav class="navbar navbar-default">

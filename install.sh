@@ -165,10 +165,11 @@ function undoInstall() {
 #if set, then only the files will be changed the underlying programs
 #wont be uninstalled
 if [ $FILESONLY = "0" ]; then
-    apt-get remove iptables-persistent
-    apt-get remove hostapd isc-dhcp-server
-    apt-get remove apache2 php5
+    apt-get purge iptables-persistent
+    apt-get purge hostapd isc-dhcp-server
+    apt-get purge apache2 php5
 fi
+    echo "A reboot may be required"
     quit
 }
 
@@ -193,16 +194,16 @@ function copyfiles() {
     g++ cam.cpp -std=c++11 -o cam
     g++ blackboard.cpp -std=c++11 -o blackboard
     cd /
-    find /var/www/html \( -type d -exec chmod u+rwx,g+rwx,o+rwx {} \; -o -type f -exec chmod u+rwx,g+rwx,o+rwx {} \; \)
+    chmod -R u+rwx,g+rwx,o+rwx /var/www/html
     cd /var/www/html
 
     #rewrites values based on previous actions
-    if [ $BACKUPDONE = "1" ]; then
+    #if [ $BACKUPDONE = "1" ]; then
         sed -i '/backupdone=0/c\backupdone=1' /INSTALL/config.sun
-    fi
-    if [ $INSTALLED = "1" ]; then
+    #fi
+    #if [ $INSTALLED = "1" ]; then
         sed -i '/installed=0/c\installed=1' /INSTALL/config.sun
-    fi
+    #fi
 
     return
 }
@@ -360,4 +361,10 @@ else
         echo "setting flag indicating install was successful"
     fi
     sed -i '/installed=0/c\installed=1' /var/www/html/INSTALL/config.sun
+
+    if [ $VERBOSE = "1" ]; then
+        echo "Updating sysctl daemon"
+    fi
+    systemctl daemon-reload
+    echo "Done with install, a reboot may be required before changes take place"
 fi
