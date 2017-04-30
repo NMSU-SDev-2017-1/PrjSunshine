@@ -33,7 +33,7 @@
   	the grey navigation menu and the clickable tabs
    -->
   <ul class="nav nav-pills">
-    <li><a data-toggle="pill" href="#home">Home</a></li>
+    <!--<li><a data-toggle="pill" href="#home">Home</a></li>-->
     <li><a data-toggle="pill" href="#menu1">User Profile</a></li>
     <li><a id="menu2Tab" data-toggle="pill" href="#menu2">Create new photo</a></li>
   </ul>

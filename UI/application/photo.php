@@ -2,7 +2,9 @@
 	<!--User options for a timed photo-->
 	<div class="panel panel-gettingStarted">
 		<div class="panel-heading">
-			<div class="panel-title text-left">Timed Photo</div>
+			<div class="panel-title text-left">Timed Photo
+			<button class="btn btn-info btn-sm pull-right" id="modalPhoto">Tutorial</button>
+			</div>
 		</div>
 	<div class="panel-body">
 		<!-- Hour -->
@@ -92,4 +94,30 @@
 		</div><!--End panel body-->
 	</div><!-- End panel -->
 	<!--End Zip code photo-->
+
+	<!--Modal to edit user profile info-->
+<div id="tutorialPhoto" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Getting to started taking photos</h4>
+      </div>
+      <div class="modal-body">
+      	<p>To get started taking a photo either begin with the timed photo panel or photo by zip code panel.</p>
+		<label>Timed Photo Panel:</label>
+		<ul>
+			<li>To get started select all options associated with the timed photo panel</li>
+			<li>When the photo has been taken, it will be viewable through the user profile page</li>
+		</ul>
+		<label>Photo by zip code:</label>
+		<p>This photo option only requires you to enter the zip code for the photo. After entering your zip code a photo of the next sunrise will be taken automatically for you! After the zip code is entered place your camera facing east and we’ll do the rest of the work for you! </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div><!--End main container-->
