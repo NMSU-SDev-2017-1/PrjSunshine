@@ -148,6 +148,11 @@ function undoInstall() {
         echo "Resetting /etc/sysctl.conf"
     fi
     sed -i '/net.ipv4.ip_forward=1/c\#net.ipv4.ip_forward=1' /etc/sysctl.conf
+    
+    if [ $VERBOSE = "1" ]; then
+        echo "Deleting cron job"
+    fi
+    crontab -r
 
     if [ $VERBOSE = "1" ]; then
         echo "Resetting daemons and settings"
@@ -356,6 +361,11 @@ else
 
     update-rc.d hostapd enable
     update-rc.d isc-dhcp-server enable
+
+    if [ $VERBOSE = "1" ]; then
+        echo "Adding cron job"
+    fi
+    (crontab -l ; echo "@reboot python /var/www/html/RPI/Data/osrun.py") | crontab -
 
     if [ $VERBOSE = "1" ]; then
         echo "setting flag indicating install was successful"
