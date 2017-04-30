@@ -25,6 +25,7 @@
 
 <!--Page specific JavaScript-->
 <script src="sunshine.js?<?php echo time(); ?>" type="text/javascript"></script>
+<script src="sunCalculation.js?<?php echo time(); ?>" type="text/javascript"></script>
 
 <!--PAGE CONTENT BEGINS HERE-->
 <div class="container">

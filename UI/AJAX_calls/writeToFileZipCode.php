@@ -8,7 +8,7 @@ if(is_readable($jsonFileName) == true){
 	if(isset($zipCodeInfo["{$zipCode}"]) == true){
 		error_log(print_r($zipCodeInfo["{$zipCode}"],true));
 		$zipInfo = $zipCodeInfo["{$zipCode}"];
-		echo json_encode('Sun will raise at 6:56 AM');
+		echo json_encode($zipInfo);
 	}else{
 		echo json_encode('NULL');
 	}

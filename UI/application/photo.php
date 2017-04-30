@@ -86,6 +86,15 @@
 				<label>Zip Code:</label>
 	  			<input type="text" class="form-control" id="zipCode" maxlength="5">
 			</div>
+			<div class="col-md-4", id>
+			<label>Camera: </label>
+			<select class="form-control" id="cameraZipCode">
+				<option value='none'>Select camera</option>
+				<option value="integrated">intergrated</option>
+				<option value="SLR">SLR</option>
+				</select>
+				<br>
+			</div>
 			<div class="col-md-2 pull-right">
 				<br>
 				<button id="zipCodePhoto" class="btn btn-primary form-control">Submit</button>

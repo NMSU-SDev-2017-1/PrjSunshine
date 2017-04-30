@@ -99,7 +99,55 @@ function submitZipCodePhoto(){
     if(json == 'NULL'){
       fileDirections += "Zip code "+zipCode+" could not be found, please ensure this zip code is correct";
     }else{
-      fileDirections += json;
+      //Zip code has been found, begin sunraise calculation
+      var latitude = json.LAT;
+      var longitude = json.LNG;
+
+      var dateObj = new Date();
+      //months from 1-12
+      var month = dateObj.getUTCMonth() + 1;
+      var day = dateObj.getUTCDate();
+      var year = dateObj.getUTCFullYear();
+
+      var zip = zipCode;
+
+      //Boolean variable for sunrise/sunset
+      var sunrise = true;
+      
+      //Variable suncalculation is minutes until sunrise
+      var sunCalculation = calcSun(month, day, year, zip,  sunrise,latitude, longitude);
+      sunCalculation =  sunCalculation - 60;
+      console.log('First calculation: ' + sunCalculation);
+      //Sunrise for today has passed, calculate the one for tomorrow
+      if(sunCalculation < 0){
+        dateObj = new Date();
+        
+        day = dateObj.getUTCDate()+1;
+        if(day == 1){
+          //months from 1-12
+          month = dateObj.getUTCMonth() + 2;
+          if(month == 1){
+            year = dateObj.getUTCFullYear()+1;  
+          }
+        }else{
+          month = dateObj.getUTCMonth() + 1;
+          year = dateObj.getUTCFullYear();
+        }
+        
+        sunCalculation = calcSun(month, day, year, zip,  sunrise,latitude, longitude);  
+        sunCalculation =  sunCalculation - 60;
+        console.log('Second calculation yields: ' + sunCalculation);
+      }
+
+      var hour = dateObj.getHours() + (sunCalculation/60);
+      var minute = dateObj.getMinutes() + (sunCalculation%60);
+      var timeOfDay = 'AM';
+      var camType = $('#cameraZipCode').val();
+      console.log('Written values are: ');
+      console.log('Hour: ' + hour);
+      console.log('Minute ' + minute);
+      writeToFile(hour, minute, timeOfDay, camType);
+     
     }
 
     //Append information to informational div
