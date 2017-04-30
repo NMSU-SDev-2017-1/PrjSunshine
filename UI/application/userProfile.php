@@ -14,7 +14,7 @@ if($tutorial == true){
 	$photoPath = "properties\images\defaultProfilePicture.jpg";
 	$statString = "<h2>Getting started</h2>";
 	$statString .= "<p>When you begin using project sunshine, you can keep track of some of your photo statistics here.";
-	$statString .= "You can get started on creating your profile by selecting the blue edit butto towards the top of the page.";
+	$statString .= "You can get started on creating your profile by selecting the blue edit button towards the top of the page.";
 	$statString .= "</p>";
 }else{
 	//User has defined values for profile, do not show tutorial, display profile settings
@@ -46,13 +46,13 @@ if($tutorial == true){
 		<div class="panel-heading">
 			<div class="panel-title text-left"><?php  echo $userName; ?>
 			<button class="btn btn-info btn-sm pull-right" id="tutorial">Tutorial</button>
-			<button class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Edit Profile</button>
+			<button id="setUpuserProfile" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Edit Profile</button>
 			</div>
 		</div>
-	<div class="panel-body">
+	<div class="panel-body" id="userProfilePanel">
 		<!--User profile-->
 		<div class="col-md-3">
-			<img class="image2" src="<?php echo $photoPath?>" align="middle">
+			<img class="image2" src="<?php echo $photoPath?>" align="middle" id="userProfileImage">
 		</div><!--End picture div-->
 		<!--User statistics/hello-->
 		<div class="col-md-9">
@@ -91,6 +91,30 @@ if($tutorial == true){
       </div>
       <div class="modal-footer">
       	<button type="submit" form="userEditProfile" class="btn btn-info" id="submitProfileInfo">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tutorialUserProfile" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Getting to started with your profile</h4>
+      </div>
+      <div class="modal-body">
+      	<p>The user profile page allows you to personalize your Project Sunshine experience by entering in your personal information. After setting up your profile you can do track the photos you’ve taken by returning here to your profile.</p>
+      	<ul>
+			<li>Navigating to the home page allows you to learn more about us and our the mission of Project Sunshine.</li>
+			<li>Get started taking photos by navigating to the Photo tab</li>
+			<li>As you begin to take photos you can review them here, within the photo panel</li>
+		</ul>
+		<p>If your information ever changes you can return here and update your name and picture.</p>
+      </div>
+      <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>

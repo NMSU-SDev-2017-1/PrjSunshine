@@ -18,26 +18,13 @@ $(document).ready(function(){
   });
 
   //Purpose: Tutorial button triggers bootstrap tour event
-  /*$( "#tutorial" ).click(function(){
-    var tour = new Tour({
-    steps: [
-    {
-        element: "#menu1",
-        title: "Step 1",
-        content: "Go here to change your user profile"
-    },
-    {
-        element: "#menu2",
-        title: "Step 2",
-        content: "Go here to take a picture"
-    }
-    ]});
+  $( "#tutorial" ).click(function(){
+    $('#tutorialUserProfile').modal('show');
+  });
 
-    // Initialize the tour
-    tour.init();
-    // Start the tour
-    tour.start();
-  });*/
+  $( "#modalPhoto" ).click(function(){
+    $('#tutorialPhoto').modal('show');
+  });
 });//End doc on ready
 
 function submitTimePhoto(){
