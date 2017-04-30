@@ -49,7 +49,7 @@ if(isset($_GET['logout'])){
 // 2. if user session not enabled get the login url
 if(!isset($_SESSION['data']) && !isset($_GET['oauth_token'])) {
 	// create a new twitter connection object
-	$connection = new TwitterOAuth(fJOvqOXKQ3zSqSURwlrWcJkJm,  kUANP3pig0vDSZSew0Yx3RADZVDivnS2dwFzASRAsYQ46oTsOm);
+	$connection = new TwitterOAuth('fJOvqOXKQ3zSqSURwlrWcJkJm',  'kUANP3pig0vDSZSew0Yx3RADZVDivnS2dwFzASRAsYQ46oTsOm');
 	// get the token from connection object
 	$request_token = $connection->getRequestToken('http://projectsunshine.000webhostapp.com/index.php'); 
 	// if request_token exists then get the token and secret and store in the session
@@ -96,12 +96,28 @@ if(isset($login_url) && !isset($_SESSION['data'])){
 	echo "<a href='$login_url'><button>Login with twitter </button></a>";
 }
 else{
-	// get the data stored from the session
-	$data = $_SESSION['data'];
-	// echo the name username and photo
-	echo "Name : ".$data->name."<br>";
-	echo "Username : ".$data->screen_name."<br>";
-	echo "Photo : <img src='".$data->profile_image_url."'/><br><br>";
+
+$oauth_token = $_GET['oauth_token'];
+echo "oauth token : ";
+echo $oauth_token;
+echo "<br>";
+
+$oauth_verifier = $_GET['oauth_verifier'];
+echo "oauth verifier : ";
+echo $oauth_verifier;
+echo "<br>";
+
+
+// post image
+$connection = new TwitterOAuth('fJOvqOXKQ3zSqSURwlrWcJkJm',  'kUANP3pig0vDSZSew0Yx3RADZVDivnS2dwFzASRAsYQ46oTsOm', $oauth_token, $oauth_verifier);
+$media = $connection->upload('media/upload', ['media' => '/raisin.jpeg']);
+$parameters = [
+    'status' => 'Sunny!',
+    'media_ids' => implode(',', [$media1->media_id_string])
+];
+$result = $connection->post('statuses/update', $parameters);
+
+
 	// echo the logout button
 	echo "<a href='?logout=true'><button>Logout</button></a>";
 } 
