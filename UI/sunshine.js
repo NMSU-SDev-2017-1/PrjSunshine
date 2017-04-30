@@ -115,32 +115,44 @@ function submitZipCodePhoto(){
       var sunrise = true;
       
       //Variable suncalculation is minutes until sunrise
-      var sunCalculation = calcSun(month, day, year, zip,  sunrise,latitude, longitude);
-      sunCalculation =  sunCalculation - 60;
-      console.log('First calculation: ' + sunCalculation);
+      var sun_calculation = calcSun(month, day, year, zip,  sunrise,latitude, longitude);
+      console.log('First calculation: ' + sun_calculation);
       //Sunrise for today has passed, calculate the one for tomorrow
-      if(sunCalculation < 0){
+      if(sun_calculation < 0){
+        monthArray = [];
+        monthArray[1] = 31;
+        monthArray[2] = 28;
+        monthArray[3] = 31;
+        monthArray[4] = 30;
+        monthArray[5] = 31;
+        monthArray[6] = 30;
+        monthArray[7] = 31;
+        monthArray[8] = 31;
+        monthArray[9] = 30;
+        monthArray[10] = 31;
+        monthArray[11] = 30;
+        monthArray[12] = 31;
         dateObj = new Date();
         
-        day = dateObj.getUTCDate()+1;
-        if(day == 1){
-          //months from 1-12
-          month = dateObj.getUTCMonth() + 2;
-          if(month == 1){
-            year = dateObj.getUTCFullYear()+1;  
+        day = dateObj.getUTCDate();
+        month = dateObj.getUTCMonth();
+        year = dateObj.getUTCFullYear();
+        if(monthArray[month] < day + 1){
+          day = 1;
+          if(month + 1 > 12){
+            month = 1;
+            year = year + 1;
           }
         }else{
-          month = dateObj.getUTCMonth() + 1;
-          year = dateObj.getUTCFullYear();
+          day = day + 1;
         }
-        
-        sunCalculation = calcSun(month, day, year, zip,  sunrise,latitude, longitude);  
-        sunCalculation =  sunCalculation - 60;
-        console.log('Second calculation yields: ' + sunCalculation);
+
+        sun_calculation = calcSun(month, day, year, zip,  sunrise,latitude, longitude);
+        console.log('Second calculation yields: ' + sun_calculation);
       }
 
-      var hour = dateObj.getHours() + (sunCalculation/60);
-      var minute = dateObj.getMinutes() + (sunCalculation%60);
+      var hour = dateObj.getHours() + (sun_calculation/60);
+      var minute = dateObj.getMinutes() + (sun_calculation%60);
       var timeOfDay = 'AM';
       var camType = $('#cameraZipCode').val();
       console.log('Written values are: ');
