@@ -23,9 +23,6 @@ if($tutorial == true){
 	$numberPhotos = $userProfileData['userStatistic']['numberPhotos'];
 	$numberOfSunrise = $userProfileData['userStatistic']['numberOfSunrise'];
 	$numberOfSunset = $userProfileData['userStatistic']['numberOfSunset'];
-	$averagePhoto = $userProfileData['userStatistic']['averagePhoto'];
-	$averageNumberOfLikes = $userProfileData['userStatistic']['averageNumberOfLikes'];
-	$mostPopularPhoto = $userProfileData['userStatistic']['mostPopularPhoto'];
 	
 	//User profile is set, grab values
 	$statString ="
@@ -33,9 +30,6 @@ if($tutorial == true){
 		<li>Number of photos taken: $numberPhotos</li>
 		<li>Number of Sunrise photos: $numberOfSunrise</li>
 		<li>Number of Sunset photos: $numberOfSunset</li>
-		<li>Average time of day for each photo: $averagePhoto</li>
-		<li>Average number of Instagram likes: $averageNumberOfLikes</li>
-		<li>Most popular photo: $mostPopularPhoto</li>
 	</ul>";
 }
 

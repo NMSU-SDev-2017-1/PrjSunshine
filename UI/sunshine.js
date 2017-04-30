@@ -51,7 +51,7 @@ function submitTimePhoto(){
     failAlert('Please select either integrated or SLR camera for taking the photo');
     return;
   }
-
+  updateUserStatistics('');
   writeToFile(hour, minute, timeOfDay,camType);
 }
 //Purpose: Pass user values into text file to be read by Java program
@@ -159,7 +159,7 @@ function submitZipCodePhoto(){
       console.log('Hour: ' + hour);
       console.log('Minute ' + minute);
       writeToFile(hour, minute, timeOfDay, camType);
-     
+      updateUserStatistics('sunrise');
     }
 
     //Append information to informational div
@@ -168,6 +168,24 @@ function submitZipCodePhoto(){
   })
   .fail(function(json){
     failAlert('Find Zip Code '+zipCode+' has failed, please ensure this Zip Code is correct.');
+  });
+}
+//Purpose: Functions associated with incrementing the stored number of photos taken
+//If sunrise is null, then only number of photos is updated
+function updateUserStatistics(sunrise){
+  $.ajax({
+    type: "POST",
+    url: "AJAX_calls/updateUserStatistics.php",
+    dataType: "json",
+    data: {
+      sunrise: sunrise
+    }
+  })
+  .done(function(json){
+    console.log('Updating user profile has complete.');
+  })
+  .fail(function(json) {
+    console.log('Updating user profile has failed');
   });
 }
 //---------------------------------------------------------------
