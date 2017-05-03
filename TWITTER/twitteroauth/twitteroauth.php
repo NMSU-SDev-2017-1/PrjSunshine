@@ -15,7 +15,7 @@ class TwitterOAuth {
   /* Contains the last API call. */
   public $url;
   /* Set up the API root URL. */
-  public $host = "https://projectsunshine.000webhostapp.com";
+  public $host = "https://api.twitter.com/1.1/";
   /* Set timeout default. */
   public $timeout = 30;
   /* Set connect timeout. */
@@ -235,4 +235,6 @@ class TwitterOAuth {
     }
     return strlen($header);
   }
+
+
 }
