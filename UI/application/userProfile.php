@@ -82,6 +82,10 @@ if($tutorial == true){
     	<input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
       	<br>
       	</form>
+	<!--Twitter profile info-->
+	<?php
+	  include('../../Twitter/index.php');
+	 ?>
       </div>
       <div class="modal-footer">
       	<button type="submit" form="userEditProfile" class="btn btn-info" id="submitProfileInfo">Submit</button>
