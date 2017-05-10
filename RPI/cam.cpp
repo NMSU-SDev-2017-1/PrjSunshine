@@ -131,7 +131,7 @@ void Cam::takePic(int n)
 
 	//Build string
 	//Checks type of camera and make appropriate call
-	if (camType == "RCAM")
+	if (camType == "integrated")
 	{
 		syscall = cmdIntegrated + path + date + ext + end;
 	}
