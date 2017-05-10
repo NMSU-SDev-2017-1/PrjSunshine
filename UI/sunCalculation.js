@@ -11,6 +11,28 @@
 //*												*/
 //***********************************************************************/
 //***********************************************************************/
+var monthList = new Array();	//	list of months and days for non-leap year
+	var i = 0;
+	monthList[i++] = new month("January", 31, "Jan");
+	monthList[i++] = new month("February", 28, "Feb");
+	monthList[i++] = new month("March", 31, "Mar");
+	monthList[i++] = new month("April", 30, "Apr");
+	monthList[i++] = new month("May", 31, "May");
+	monthList[i++] = new month("June", 30, "Jun");
+	monthList[i++] = new month("July", 31, "Jul");
+	monthList[i++] = new month("August", 31, "Aug");
+	monthList[i++] = new month("September", 30, "Sep");
+	monthList[i++] = new month("October", 31, "Oct");
+	monthList[i++] = new month("November", 30, "Nov");
+	monthList[i++] = new month("December", 31, "Dec");
+	
+	
+	function month(name, numdays, abbr) 
+	{
+		this.name = name;
+		this.numdays = numdays;
+		this.abbr = abbr;
+	}
 
 // Convert radian angle to degrees
 //save
@@ -499,16 +521,17 @@
 //*   time in minutes from zero Z							*/
 //***********************************************************************/
 
-	function calcSunriseUTC(JDay, latitude, longitude)
+	
+	function calcSunriseUTC(JD, latitude, longitude)
 	{
-		var t = calcTimeJulianCent(JDay);
+		var t = calcTimeJulianCent(JD);
 
 		// *** Find the time of solar noon at the location, and use
         //     that declination. This is better than start of the 
         //     Julian day
 
 		var noonmin = calcSolNoonUTC(t, longitude);
-		var tnoon = calcTimeJulianCent (JDay+noonmin/1440.0);
+		var tnoon = calcTimeJulianCent (JD+noonmin/1440.0);
 
 		// *** First pass to approximate sunrise (using solar noon)
 
@@ -662,27 +685,148 @@
 			if((latitude >= -90) && (latitude < -89))
 			{
 				alert("All latitudes between 89 and 90 S\n will be set to -89");
-				latLongForm["latDeg"].value = -89;
 				latitude = -89;
 			}
 			if ((latitude <= 90) && (latitude > 89))
 			{
 				alert("All latitudes between 89 and 90 N\n will be set to 89");
-				latLongForm["latDeg"].value = 89;
 				latitude = 89;
 			}
 			
 			//var JDay = JD(parseFloat(year.value), parseFloat(month.value), parseFloat(day.value));
 			var JDay = JD(year, month, day);
+			
+			
+			//***********************************************************************/
+//* Name:    timeStringShortAMPM							*/
+//* Type:    Function									*/
+//* Purpose: convert time of day in minutes to a zero-padded string	*/
+//*		suitable for printing to the form text fields.  If time	*/
+//*		crosses a day boundary, date is appended.				*/
+//* Arguments:										*/
+//*   minutes : time of day in minutes						*/
+//*   JD  : julian day									*/
+//* Return value:										*/
+//*   string of the format HH:MM[AM/PM] (DDMon)					*/
+//***********************************************************************/
 
+// timeStringShortAMPM returns a zero-padded string (HH:MM *M) given time in 
+// minutes and appends short date if time is > 24 or < 0, resp.
+
+	function timeStringShortAMPM(minutes, JD)
+	{
+		var julianday = JD;
+		var floatHour = minutes / 60.0;
+		var hour = Math.floor(floatHour);
+		var floatMinute = 60.0 * (floatHour - Math.floor(floatHour));
+		var minute = Math.floor(floatMinute);
+		var floatSec = 60.0 * (floatMinute - Math.floor(floatMinute));
+		var second = Math.floor(floatSec + 0.5);
+		var PM = false;
+
+		minute += (second >= 30)? 1 : 0;
+
+		if (minute >= 60) 
+		{
+			minute -= 60;
+			hour ++;
+		}
+
+		var daychange = false;
+		if (hour > 23) 
+		{
+			hour -= 24;
+			daychange = true;
+			julianday += 1.0;
+		}
+
+		if (hour < 0)
+		{
+			hour += 24;
+			daychange = true;
+			julianday -= 1.0;
+		}
+
+		if (hour > 12)
+		{
+			hour -= 12;
+			PM = true;
+		}
+
+            if (hour == 12)
+		{
+              PM = true;
+            }
+
+		if (hour == 0)
+		{
+			PM = false;
+			hour = 12;
+		}
+
+		var timeStr = hour + ":";
+		if (minute < 10)	//	i.e. only one digit
+			timeStr += "0" + minute + ((PM)?"PM":"AM");
+		else
+			timeStr += "" + minute + ((PM)?"PM":"AM");
+
+		if (daychange) return timeStr + " " + calcDayFromJD(julianday);
+		return timeStr;
+	}
+		function isDaylight(month, day){
+			
+			if(month ==3){
+				if(day >= 9) return 60;
+				
+			}
+			else if(month >3 && month <=11)
+			{
+				if (month == 11 && day < 1) return 0;
+				else return 60;
+					
+				
+			}				
+			
+			else return 0;
+			
+			
+		}
+		
+		function zones(zip){
+			
+			if(zip >98000)
+				return 10;
+			else if(zip >= 96700 && zip<= 96899)
+				return 9;
+			else if(zip >= 89999)
+				return 8;
+			else if(zip >= 80000 || (zip >= 57500 && zip <= 59899) )
+				 return 7;
+			else if (zip>= 35999)
+				return 6;
+			else 
+				return 5;
+			
+			
+			
+			
+			
+		}
 //*********************************************************************/
+		var daylight = isDaylight(month,day,year);
+		var zone = zones(zip);
 			if(sunrise == true){
-				var riseTimeGMT = calcSunriseUTC(JDay, latitude, longitude);
+				var riseTimeGMT = calcSunriseUTC(JDay, latitude, (-1)*longitude);
+				var riseTimeLST = riseTimeGMT - (60 * zone) + daylight;
+				var riseStr = timeStringShortAMPM(riseTimeLST, JD);
+				riseTimeGMT = riseStr;
 				return riseTimeGMT;
 			}
 			else{
 				var setTimeGMT = calcSunsetUTC(JDay, latitude, longitude);
-				return setTimeGMT;
+				var setTimeLST = setTimeGMT - (60 * zone) + daylight;
+				var setStr = timeStringShortAMPM(setTimeLST, JD);
+				return setStr;
 			}
 	}
 
