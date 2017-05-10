@@ -204,10 +204,10 @@ function copyfiles() {
 
     #rewrites values based on previous actions
     #if [ $BACKUPDONE = "1" ]; then
-        sed -i '/backupdone=0/c\backupdone=1' /INSTALL/config.sun
+        sed -i '/backupdone=0/c\backupdone=1' INSTALL/config.sun
     #fi
     #if [ $INSTALLED = "1" ]; then
-        sed -i '/installed=0/c\installed=1' /INSTALL/config.sun
+        sed -i '/installed=0/c\installed=1' INSTALL/config.sun
     #fi
 
     return
@@ -365,7 +365,7 @@ else
     if [ $VERBOSE = "1" ]; then
         echo "Adding cron job"
     fi
-    (crontab -l ; echo "@reboot python /var/www/html/RPI/Data/osrun.py") | crontab -
+    crontab -l | { cat; echo "@reboot python /var/www/html/RPI/Data/osrun.py &";} | crontab -
 
     if [ $VERBOSE = "1" ]; then
         echo "setting flag indicating install was successful"
