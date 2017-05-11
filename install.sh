@@ -196,8 +196,7 @@ function copyfiles() {
     rm -r .git
     rm .gitignore
     cd RPI
-    g++ cam.cpp -std=c++11 -o cam
-    g++ blackboard.cpp -std=c++11 -o blackboard
+    g++ -std=gnu++11 -o cam cam.cpp
     cd /
     chmod -R u+rwx,g+rwx,o+rwx /var/www/html
     cd /var/www/html
