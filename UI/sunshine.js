@@ -52,10 +52,10 @@ function submitTimePhoto(){
     return;
   }
   updateUserStatistics('');
-  writeToFile(hour, minute, timeOfDay,camType);
+  writeToFile(hour, minute, timeOfDay,camType,'');
 }
 //Purpose: Pass user values into text file to be read by Java program
-function writeToFile(hour, minute, timeOfDay, camType){
+function writeToFile(hour, minute, timeOfDay, camType,photoType){
   $.ajax({
     type: "POST",
     url: "AJAX_calls/writeToFile.php",
@@ -64,7 +64,8 @@ function writeToFile(hour, minute, timeOfDay, camType){
       hour: hour,
       minute : minute,
       timeOfDay: timeOfDay,
-      camType : camType
+      camType : camType,
+      photoType: photoType
     }
   })
   .done(function(json){
@@ -161,7 +162,7 @@ function submitZipCodePhoto(){
       console.log('Written values are: ');
       console.log('Hour: ' + hour);
       console.log('Minute ' + minute);
-      writeToFile(hour, minute, timeOfDay, camType);
+      writeToFile(hour, minute, timeOfDay, camType,'foo');
       updateUserStatistics('sunrise');
     }
 
