@@ -34,7 +34,7 @@
 	$fileString .= "<interval>5</interval>\n";
 	$fileString .= "<delay>".$finalTime."</delay>\n";
 	$fileString .= "<camType>".$userCameraType."</camType>\n";
- 	$fileString .= "<Testing>User Time: ".$userTime." Time: ".$time."</Testing>"
+ 	$fileString .= "<Testing>User Time: ".$userTime." Time: ".$time."</Testing>";
  	$writeFileLocation = "../../IO/in/";
  	$fileName = $writeFileLocation . 'commands.sun';
  	
