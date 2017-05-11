@@ -84,7 +84,7 @@ if($tutorial == true){
       	</form>
 	<!--Twitter profile info-->
 	<?php
-	  include('../../Twitter/twitter.php');
+	  include('../../TWITTER/twitter.php');
 	 ?>
       </div>
       <div class="modal-footer">
