@@ -4,6 +4,7 @@
 	$userMinute = $_POST['minute'];
 	$userTimeOfDay = $_POST['timeOfDay'];
 	$userCameraType = $_POST['camType'];
+	$photoType = $_POST['photoType'];
 
 	//Getting current time from server, pass time into file for Java program
 
@@ -16,13 +17,18 @@
 	//Convert both current system time and time entered by user
 	$time = convertTimeToSeconds($date[0], $date[1], substr($date[2], 2, 4));
 	$userTime = convertTimeToSeconds($userHour, $userMinute, $userTimeOfDay); 	
-
-	if($time > $userTime){
-		$finalTime = $time - $userTime; 
+	
+	if($photoType == 'foo'){
+		$time = 86400 - $time;
+		$finalTime = $userTime + $time;
 	}else{
-		$finalTime = $userTime - $time;
+		
+		if($time > $userTime){
+			$finalTime = $time - $userTime; 
+		}else{
+			$finalTime = $userTime - $time;
+		}	
 	}
-
 	//Get current date for photo
 	$monthDayYear = date("m/d/y");
 
