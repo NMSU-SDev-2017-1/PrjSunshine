@@ -153,7 +153,7 @@ function submitZipCodePhoto(){
 
       //var hour = dateObj.getHours() + (sun_calculation/60);
       var hour = sun_calculation.charAt(0);
-      hour = hour - 2;
+      hour = hour + 24;
       var minute = sun_calculation.substring(2, 4);
       //var minute = dateObj.getMinutes() + (sun_calculation%60);
       var timeOfDay = 'AM';
