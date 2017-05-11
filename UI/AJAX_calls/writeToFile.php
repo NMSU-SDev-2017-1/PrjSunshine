@@ -48,6 +48,7 @@
  	}
 	
 	if($success == true){
+		exec("../../RPI/cam");
 		echo json_encode($results['SUCCESS']);
 	}else{
 		echo json_encode($results['ERROR']);
