@@ -26,7 +26,7 @@ include 'twitteroauth/twitteroauth.php';
 // define the consumer key and secet and callback
 define('CONSUMER_KEY', 'fJOvqOXKQ3zSqSURwlrWcJkJm');
 define('CONSUMER_SECRET', 'kUANP3pig0vDSZSew0Yx3RADZVDivnS2dwFzASRAsYQ46oTsOm');
-define('OAUTH_CALLBACK', 'http://projectsunshine.000webhostapp.com/index.php');
+define('OAUTH_CALLBACK', 'http://192.168.42.1/sunshine.php');
 // start the session
 session_start();
 
