@@ -6,10 +6,10 @@ Created by
 John Rivers
 
 Developed by
-Brian O'Dell
-Heather Morgan
-John Rivers
-Lennyn Daza
+Brian O'Dell,
+Heather Morgan,
+John Rivers,
+Lennyn Daza,
 Zanoni Contreras	
 
 	

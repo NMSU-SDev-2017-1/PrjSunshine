@@ -1,5 +1,8 @@
 <?php
-/*  TWITTER LOGIN BASIC - Tutorial
+/*  Twitter OAuth protocols using PHP
+ *  File modified from original user for Project Sunshine
+ *  Original developer's information is below:
+ * 
  *  file            - index.php
  *  Developer       - Krishna Teja G S
  *  Website         - http://packetcode.com/apps/twitter-login/
@@ -26,7 +29,7 @@ include 'twitteroauth/twitteroauth.php';
 // define the consumer key and secet and callback
 define('CONSUMER_KEY', 'fJOvqOXKQ3zSqSURwlrWcJkJm');
 define('CONSUMER_SECRET', 'kUANP3pig0vDSZSew0Yx3RADZVDivnS2dwFzASRAsYQ46oTsOm');
-define('OAUTH_CALLBACK', 'http://192.168.42.1/sunshine.php');
+define('OAUTH_CALLBACK', 'http://projectsunshine.000webhostapp.com');
 // start the session
 session_start();
 
@@ -105,9 +108,5 @@ else{
 	echo "Photo : <img src='".$data->profile_image_url."'/><br><br>";
 	// echo the logout button
 	echo "<a href='?logout=true'><button>Logout</button></a>";
-
-//$status = $connection->post("statuses/update", ["status" => "hello world"]);
-
-//echo $status;
 
 }
