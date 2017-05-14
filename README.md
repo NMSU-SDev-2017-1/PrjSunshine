@@ -35,11 +35,17 @@ Zanoni Contreras
 
 	How to install
 	--------------
-
+        Clone or download the repository on a Rasperry Pi (Must be running Raspbian Jessie). While inside the directory the files are 
+	in, type "sudo ./install.sh" without the quotation marks. Enter yes at all the prompts, then reboot the pi. In the device the
+	user wants to use to control the Pi, Connect to the Wifi network Sunshine. The password is "projectsunshine"  .  
+	When connected, enter 192.168.42.1 into a web browser. From there the user will have acess to the application.
+	
+	If the user enters "sudo ./install -h" you can see the options for the script. They include uninstalling, and updating 
+	the files in the server.
 	
 	How to build
 	------------
-	
+	Building the main applicaiton is also handled by the install application. See those instructions above.
 	
 	Current Version
 	---------------
